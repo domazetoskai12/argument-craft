@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ArgumentCraft — Postgraduate Essay Practice</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#1a1714;--muted:#5a5651;--faint:#9a958f;--parch:#faf8f4;--parch2:#f0ede6;--border:#ddd9d0;--green:#2d5f3f;--gl:#e8f2eb;--gold:#b07d2a;--goldl:#fdf3e3;--blue:#1e4a7a;--bluel:#eef4fc;--red:#8b2424;--redl:#fdf0f0;--r:10px;--sh:0 2px 12px rgba(0,0,0,.08)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"DM Sans",sans-serif;background:var(--parch);color:var(--ink);font-size:15px;line-height:1.6}
+header{background:var(--ink);position:sticky;top:0;z-index:100;box-shadow:0 2px 16px rgba(0,0,0,.25)}
+.hi{max-width:1060px;margin:0 auto;padding:0 20px;height:54px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-family:"Lora",serif;font-size:19px;color:#f0ede6}.logo span{color:#6ec98a}
+.pills{display:flex;gap:4px;flex-wrap:wrap}
+.pill{padding:5px 12px;border-radius:20px;font-size:12px;font-weight:600;cursor:pointer;border:1.5px solid transparent;color:#9a958f;background:transparent;transition:all .2s;font-family:"DM Sans",sans-serif}
+.pill.active{background:var(--green);color:#fff;border-color:var(--green)}
+.pill:hover:not(.active){color:#ddd;border-color:#555}
+@media(max-width:700px){.pills{display:none}}
+.app{max-width:1060px;margin:0 auto;padding:28px 20px 80px}
+.module{display:none}.module.active{display:block;animation:fi .3s ease}
+@keyframes fi{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:18px}
+@media(max-width:700px){.two{grid-template-columns:1fr}}
+.tag{font-size:11px;font-weight:600;letter-spacing:1.2px;text-transform:uppercase;color:var(--green);display:block;margin-bottom:6px}
+h1.mt{font-family:"Lora",serif;font-size:26px;font-weight:600;line-height:1.3;margin-bottom:6px}
+.md{color:var(--muted);font-size:14.5px;max-width:680px;line-height:1.65;margin-bottom:22px}
+.box{background:white;border:1px solid var(--border);border-radius:var(--r);padding:18px 22px;margin-bottom:16px;box-shadow:var(--sh)}
+.box h3{font-family:"Lora",serif;font-size:15px;font-weight:600;margin-bottom:8px;display:flex;align-items:center;gap:8px}
+.ico{width:24px;height:24px;border-radius:5px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0}
+.ip{background:var(--bluel);color:var(--blue)}.ig{background:var(--gl);color:var(--green)}.ir{background:var(--redl);color:var(--red)}
+.callout{border-left:3px solid;padding:10px 14px;border-radius:0 8px 8px 0;margin-bottom:14px;font-size:13.5px;line-height:1.6}
+.ct{border-color:var(--green);background:var(--gl);color:#1a3d27}
+.ci{border-color:var(--blue);background:var(--bluel);color:#0e2d50}
+.callout strong{display:block;font-weight:600;margin-bottom:2px}
+.ep{border:2px solid #c0392b;border-radius:var(--r);overflow:hidden;margin-bottom:16px}
+.ep-h{background:#c0392b;color:white;padding:9px 14px;font-size:12.5px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;display:flex;align-items:center;gap:8px}
+.ep-b{padding:12px 14px;background:#fff8f8}
+.ei{display:flex;gap:9px;align-items:flex-start;padding:7px 0;border-bottom:1px solid #fddede;font-size:13.5px;line-height:1.55}
+.ei:last-child{border-bottom:none;padding-bottom:0}
+.eib{width:18px;height:18px;background:#fddede;border-radius:50%;color:#c0392b;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
+.ex{background:var(--parch2);border:1px solid var(--border);border-radius:8px;padding:14px 16px;font-family:"Lora",serif;font-size:14px;line-height:1.85;margin-bottom:10px}
+.hl{padding:1px 3px;border-radius:3px;font-weight:600}
+.hy{background:#fff3a3}.hb{background:#b3d9ff}.hg{background:#b3f5c8}.hr{background:#ffd6d6}.hx{background:#e6f0ff}
+.legend{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:8px}
+.li{display:flex;align-items:center;gap:5px;font-size:12px;color:var(--muted)}
+.ld{width:13px;height:13px;border-radius:3px}
+.snav{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:22px}
+.sb{display:flex;align-items:flex-start;gap:10px;padding:14px 16px;border-radius:var(--r);border:2px solid var(--border);background:white;cursor:pointer;transition:all .18s;text-align:left;width:100%;font-family:"DM Sans",sans-serif}
+.sb:hover{border-color:var(--green);background:var(--gl);transform:translateY(-1px)}
+.sb.active{border-color:var(--green);background:var(--green);color:white}
+.sb.active .sico{background:rgba(255,255,255,.2)}
+.sb.active .slbl{color:rgba(255,255,255,.75)}
+.sb.active .stit{color:white}
+.sb.active .sdesc{color:rgba(255,255,255,.65)}
+.sico{width:36px;height:36px;border-radius:8px;background:var(--parch2);display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0}
+.slbl{font-size:10.5px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.8px;margin-bottom:2px;display:block}
+.stit{font-size:14px;font-weight:700;font-family:"Lora",serif;color:var(--ink);display:block}
+.sdesc{font-size:11px;color:var(--faint);line-height:1.35;margin-top:1px;display:block}
+.tab{display:none}.tab.active{display:block}
+.dsel{background:linear-gradient(135deg,#f0fdf4,#e6f5eb);border:2px solid #7dbf95;border-radius:var(--r);padding:16px 18px;margin-bottom:6px;box-shadow:0 2px 10px rgba(45,95,63,.1)}
+.dlbl{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--green);margin-bottom:12px}
+.drow{display:flex;flex-wrap:wrap;gap:7px}
+.dbtn{padding:8px 16px;border-radius:22px;border:2px solid #9ecfaf;background:white;font-family:"DM Sans",sans-serif;font-size:13px;cursor:pointer;transition:all .15s;color:var(--green);font-weight:600}
+.dbtn:hover{border-color:var(--green);background:var(--green);color:white}
+.dbtn.on{background:var(--green);border-color:var(--green);color:white}
+.srow{display:flex;flex-wrap:wrap;gap:6px;padding-top:10px;border-top:1px solid #b8dfc5;margin-top:10px}
+.sbtn2{padding:5px 12px;border-radius:14px;border:1.5px solid #9ecfaf;background:white;font-family:"DM Sans",sans-serif;font-size:12.5px;cursor:pointer;transition:all .15s;color:var(--green);font-weight:500}
+.sbtn2:hover{border-color:var(--green);background:var(--gl)}
+.sbtn2.on{background:var(--green);border-color:var(--green);color:white;font-weight:600}
+.dbar{background:#1a3d27;color:#a3d9b3;border-radius:8px;padding:8px 14px;font-size:13px;font-weight:500;margin-bottom:18px;display:none;align-items:center;gap:8px}
+.dbar.show{display:flex}
+.pb{background:var(--goldl);border:1px solid #e8c97a;border-radius:var(--r);padding:13px 16px;margin-bottom:16px}
+.pbt{font-size:11.5px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--gold);margin-bottom:9px}
+.pbg{margin-bottom:8px}.pbg:last-child{margin-bottom:0}
+.pbgl{font-size:12px;font-weight:600;color:#7a5500;margin-bottom:4px}
+.chips{display:flex;flex-wrap:wrap;gap:4px}
+.chip{background:white;border:1px solid #e8c97a;border-radius:11px;padding:3px 8px;font-size:12px;color:#5c3d00;cursor:default}
+.ma{margin-top:14px;border:1.5px solid var(--green);border-radius:var(--r);overflow:hidden}
+.mabtn{background:var(--gl);border:none;width:100%;padding:10px 14px;text-align:left;font-family:"DM Sans",sans-serif;font-size:13px;font-weight:600;color:var(--green);cursor:pointer;display:flex;justify-content:space-between;align-items:center}
+.mabtn:hover{background:#d0e8d5}
+.mabody{display:none;padding:14px 16px;background:white;font-family:"Lora",serif;font-size:13.5px;line-height:1.85}
+.mabody.open{display:block}
+.ann{font-family:"DM Sans",sans-serif;font-size:11px;color:var(--green);font-weight:600;display:inline-block;padding:1px 7px;background:var(--gl);border-radius:3px;margin:2px 0}
+.wcard{background:white;border:1px solid var(--border);border-radius:var(--r);overflow:hidden;margin-bottom:16px;box-shadow:var(--sh)}
+.wch{background:var(--ink);color:var(--parch);padding:10px 16px;font-size:13px;font-weight:500;display:flex;align-items:center;gap:7px}
+.wch span{color:#6ec98a}
+textarea{width:100%;border:none;outline:none;padding:14px 16px;font-family:"Lora",serif;font-size:13.5px;line-height:1.85;color:var(--ink);resize:vertical;min-height:140px}
+textarea::placeholder{color:var(--faint);font-style:italic}
+.wcf{border-top:1px solid var(--border);padding:8px 16px;display:flex;align-items:center;justify-content:space-between;background:var(--parch)}
+.wcc{font-size:12px;color:var(--faint)}
+.cl{background:white;border:1px solid var(--border);border-radius:var(--r);padding:18px 20px}
+.cl h4{font-size:12.5px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.8px;margin-bottom:12px}
+.ci2{display:flex;align-items:flex-start;gap:11px;padding:9px 4px;border-bottom:1px solid var(--parch2);cursor:pointer}
+.ci2:last-of-type{border-bottom:none}
+.ci2:hover{background:var(--parch)}
+.cb{width:19px;height:19px;border:2px solid var(--border);border-radius:4px;flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center;font-size:11px;transition:all .15s}
+.ci2.checked .cb{background:var(--green);border-color:var(--green);color:white}
+.ci2.checked .ct2{color:var(--muted);text-decoration:line-through}
+.ct2{font-size:13.5px;line-height:1.55}
+.sc2{margin-top:14px;padding:11px 14px;border-radius:8px;font-size:13.5px;font-weight:500;display:none}
+.sc2.show{display:block}
+.sc2.great{background:var(--gl);color:var(--green)}
+.sc2.ok{background:var(--goldl);color:var(--gold)}
+.sc2.low{background:var(--redl);color:var(--red)}
+.qs{padding:9px 12px;border:1.5px solid var(--border);border-radius:8px;margin-bottom:7px;font-family:"Lora",serif;font-size:13.5px;line-height:1.65;cursor:pointer;transition:all .15s;background:white;width:100%;text-align:left}
+.qs:hover{border-color:var(--green)}
+.qs.correct{border-color:var(--green);background:var(--gl)}
+.qs.wrong{border-color:var(--red);background:var(--redl)}
+.db{padding:6px 13px;border-radius:18px;border:1.5px solid var(--border);background:white;font-family:"DM Sans",sans-serif;font-size:12.5px;cursor:pointer;transition:all .15s;color:var(--ink)}
+.db:hover{border-color:var(--green);color:var(--green)}
+.db.sel{background:var(--bluel);border-color:var(--blue);color:var(--blue)}
+.db.correct{background:var(--gl);border-color:var(--green);color:var(--green);font-weight:500}
+.db.wrong{background:var(--redl);border-color:var(--red);color:var(--red)}
+.dopts{display:flex;flex-wrap:wrap;gap:7px;margin-top:8px}
+.btn{padding:8px 18px;border-radius:8px;font-family:"DM Sans",sans-serif;font-size:13.5px;font-weight:500;cursor:pointer;transition:all .2s;border:none}
+.bp{background:var(--green);color:white}.bp:hover{background:#224d32}
+.bs{background:white;color:var(--ink);border:1.5px solid var(--border)}.bs:hover{border-color:var(--ink)}
+.bn{background:var(--ink);color:var(--parch);padding:10px 24px;font-size:14.5px;border-radius:8px;cursor:pointer;border:none;font-family:"DM Sans",sans-serif;font-weight:500}
+.bn:hover{background:#333}
+.sc{display:flex;align-items:center;justify-content:space-between;padding-top:18px;border-top:1px solid var(--border);margin-top:20px}
+.sh{font-size:12.5px;color:var(--faint);font-style:italic}
+.hmbtn{padding:6px 13px;border-radius:18px;font-size:12.5px;font-weight:600;cursor:pointer;border:2px solid var(--border);background:white;color:var(--muted);transition:all .15s}
+.rc{margin-bottom:28px}
+.rct{font-family:"Lora",serif;font-size:17px;font-weight:600;margin-bottom:8px;padding-bottom:8px;border-bottom:2px solid var(--border);display:flex;align-items:center;gap:8px}
+.rg{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px;margin-top:12px}
+.rcard{background:white;border:1px solid var(--border);border-radius:var(--r);padding:16px 18px;box-shadow:var(--sh);transition:transform .15s}
+.rcard:hover{transform:translateY(-2px)}
+.rtype{font-size:10.5px;font-weight:600;letter-spacing:1px;text-transform:uppercase;margin-bottom:5px}
+.rt-book{color:#4a2e7a}.rt-web{color:var(--blue)}.rt-tool{color:var(--gold)}.rt-guide{color:var(--green)}
+.rtitle{font-family:"Lora",serif;font-size:14px;font-weight:600;margin-bottom:3px}
+.rauth{font-size:12.5px;color:var(--muted);margin-bottom:7px}
+.rdesc{font-size:12.5px;color:var(--muted);line-height:1.55;margin-bottom:8px}
+.rlink{font-size:12.5px;font-weight:500;color:var(--blue);text-decoration:none}
+.rlink:hover{text-decoration:underline}
+.rbadge{display:inline-block;padding:2px 7px;border-radius:9px;font-size:10.5px;font-weight:600;margin-left:6px;background:var(--gl);color:var(--green)}
+</style>
+</head>
+<body>
+<header>
+  <div class="hi">
+    <div class="logo">Argument<span>Craft</span></div>
+    <div class="pills">
+      <button class="pill active" onclick="goMod(0)">① Welcome</button>
+      <button class="pill" onclick="goMod(1)">② Introduction</button>
+      <button class="pill" onclick="goMod(2)">③ Arguments</button>
+      <button class="pill" onclick="goMod(3)">④ Counterarguments</button>
+      <button class="pill" onclick="goMod(4)">⑤ Conclusion</button>
+      <button class="pill" onclick="goMod(5)">⑥ Resources</button>
+    </div>
+  </div>
+</header>
+<div class="app">
+
+<!-- MODULE 0: WELCOME -->
+<div class="module active" id="mod0">
+  <span class="tag">Welcome</span>
+  <h1 class="mt">Argumentative Essay Writing</h1>
+  <p class="md">This tool guides you through every part of an academic argumentative essay, with discipline-specific examples, phrase banks, and model answers.</p>
+  <div class="two">
+    <div>
+      <div class="box"><h3><span class="ico ip">📋</span>What you will practise</h3>
+        <ul style="font-size:13.5px;color:var(--muted);line-height:2.1;padding-left:16px">
+          <li><strong>Introduction &amp; Thesis Statement</strong></li>
+          <li><strong>Supporting Arguments</strong> (PEEL structure)</li>
+          <li><strong>Counterarguments &amp; Rebuttals</strong></li>
+          <li><strong>Conclusions</strong> that synthesise and extend</li>
+        </ul>
+      </div>
+      <div class="callout ct"><strong>Discipline-specific content</strong>Choose your field at the top of each module — examples, tasks and model answers will match your discipline.</div>
+    </div>
+    <div>
+      <div class="box"><h3><span class="ico ig">🗂️</span>How each module works</h3>
+        <ul style="font-size:13.5px;color:var(--muted);line-height:2.1;padding-left:16px">
+          <li><strong>Stage 1 — Learn:</strong> Concept + annotated example</li>
+          <li><strong>Stage 2 — Spot &amp; Identify:</strong> Quizzes</li>
+          <li><strong>Stage 3 — Write &amp; Reflect:</strong> Write + self-check + model answer</li>
+        </ul>
+      </div>
+      <div class="callout ci"><strong>Phrase banks</strong>Each Stage 3 task includes a phrase bank with academic phrases relevant to your discipline and module.</div>
+    </div>
+  </div>
+  <div class="sc"><div class="sh">Work through each module in order, or jump to any section above.</div><button class="bn" onclick="goMod(1)">Begin: Introduction &#8594;</button></div>
+</div>
+
+<!-- MODULE 1: INTRODUCTION -->
+<div class="module" id="mod1">
+  <span class="tag">Module 1 &middot; Introduction</span>
+  <h1 class="mt">The Introduction &amp; Thesis Statement</h1>
+  <p class="md">A strong introduction contextualises the topic, narrows to the specific argument, and ends with a clear thesis statement.</p>
+  <div class="dsel" id="ds1"></div><div class="dbar" id="db1"></div>
+  <div class="snav">
+    <button class="sb active" onclick="swTab(1,'learn',this)"><div class="sico">📖</div><div><span class="slbl">Stage 1</span><span class="stit">Learn</span><span class="sdesc">Concepts &amp; annotated examples</span></div></button>
+    <button class="sb" onclick="swTab(1,'spot',this)"><div class="sico">🔍</div><div><span class="slbl">Stage 2</span><span class="stit">Spot &amp; Identify</span><span class="sdesc">Quizzes &amp; highlighting</span></div></button>
+    <button class="sb" onclick="swTab(1,'write',this)"><div class="sico">✍️</div><div><span class="slbl">Stage 3</span><span class="stit">Write &amp; Reflect</span><span class="sdesc">Write your own + model answer</span></div></button>
+  </div>
+  <div class="tab active" id="t1-learn">
+    <div class="two">
+      <div>
+        <div class="box"><h3><span class="ico ip">📖</span>Introduction structure</h3>
+          <p style="font-size:13.5px;color:var(--muted);line-height:1.8;margin-bottom:8px"><strong>Hook:</strong> A broad, engaging opening that draws the reader in.</p>
+          <p style="font-size:13.5px;color:var(--muted);line-height:1.8;margin-bottom:8px"><strong>Background:</strong> Key context the reader needs to understand the debate.</p>
+          <p style="font-size:13.5px;color:var(--muted);line-height:1.8"><strong>Thesis:</strong> A debatable, specific statement of your position — the final sentence.</p>
+        </div>
+        <div class="callout ct"><strong>What makes a strong thesis?</strong>It is specific, debatable, and signals your main argument. Avoid "This essay will discuss&#8230;"</div>
+        <div class="ep"><div class="ep-h"><span>&#9888;</span>Common errors</div><div class="ep-b">
+          <div class="ei"><div class="eib">!</div><span>Stating a fact rather than an argument — your thesis must be debatable</span></div>
+          <div class="ei"><div class="eib">!</div><span>Starting with "In this essay I will&#8230;" — too formulaic</span></div>
+          <div class="ei"><div class="eib">!</div><span>A thesis that is too broad or too narrow</span></div>
+        </div></div>
+      </div>
+      <div>
+        <div class="legend">
+          <div class="li"><div class="ld" style="background:#fff3a3"></div>Hook</div>
+          <div class="li"><div class="ld" style="background:#b3d9ff"></div>Background</div>
+          <div class="li"><div class="ld" style="background:#b3f5c8"></div>Thesis</div>
+        </div>
+        <div class="ex" id="ex1">
+          <span class="hl hy">The rapid proliferation of artificial intelligence systems has triggered unprecedented debate among policymakers, technologists, and ethicists worldwide.</span> <span class="hl hb">While AI offers significant benefits, the absence of binding international governance frameworks has created regulatory fragmentation, with some nations imposing strict controls while others adopt a laissez-faire approach.</span> <span class="hl hg">This essay argues that the unchecked global expansion of AI systems poses systemic risks that only a coordinated international regulatory framework can adequately address.</span>
+        </div>
+        <div class="callout ci" style="font-size:13px"><strong>Notice:</strong> The thesis takes a clear, debatable position — someone could disagree with it.</div>
+      </div>
+    </div>
+    <div class="sc"><button class="btn bs" onclick="swTab(1,'spot',document.querySelector('#mod1 .snav .sb:nth-child(2)'))">Next: Spot &amp; Identify &#8594;</button></div>
+  </div>
+  <div class="tab" id="t1-spot">
+    <div class="box" style="margin-bottom:16px">
+      <h4 style="font-size:12.5px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.8px;margin-bottom:10px">🔍 Exercise A — Which sentence is the thesis?</h4>
+      <p style="font-size:13.5px;color:var(--muted);margin-bottom:12px">Click the sentence you believe is the <strong>thesis statement</strong>.</p>
+      <div id="q1">
+        <button class="qs" onclick="chkQ1(this,false)">Global AI investment reached $91 billion in 2022, more than doubling from the previous year.</button>
+        <button class="qs" onclick="chkQ1(this,false)">Governments around the world are grappling with how to respond to advances in machine learning.</button>
+        <button class="qs" onclick="chkQ1(this,true)">Without enforceable international standards, the competitive race to deploy AI will inevitably prioritise speed over safety, making global governance not merely desirable but essential.</button>
+        <button class="qs" onclick="chkQ1(this,false)">Several countries, including EU member states, have proposed national AI legislation in recent years.</button>
+      </div>
+      <div id="q1fb" style="display:none;margin-top:12px"></div>
+    </div>
+    <div class="box">
+      <h4 style="font-size:12.5px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.8px;margin-bottom:6px">🔍 Exercise B — Highlight the parts yourself</h4>
+      <p style="font-size:13.5px;color:var(--muted);margin-bottom:14px;line-height:1.6">Choose a colour, then <strong>select text</strong> you think matches that part. Mark all three, then click <strong>Check my highlights</strong>.</p>
+      <div style="display:flex;gap:7px;flex-wrap:wrap;margin-bottom:14px">
+        <button class="hmbtn" onclick="setHLM(event,'hook')">🟡 Hook</button>
+        <button class="hmbtn" onclick="setHLM(event,'background')">🔵 Background</button>
+        <button class="hmbtn" onclick="setHLM(event,'thesis')">🟢 Thesis</button>
+      </div>
+      <div id="hls" style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:10px;font-size:12.5px">
+        <span id="hls-hook" style="color:var(--faint)">🟡 Hook: not marked</span>
+        <span id="hls-background" style="color:var(--faint)">🔵 Background: not marked</span>
+        <span id="hls-thesis" style="color:var(--faint)">🟢 Thesis: not marked</span>
+      </div>
+      <div id="hltext" style="font-family:'Lora',serif;font-size:14px;line-height:2;background:var(--parch2);border:1px solid var(--border);border-radius:8px;padding:16px 18px;user-select:text;cursor:text;margin-bottom:12px" onmouseup="capHL()" ontouchend="capHL()"></div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <button class="btn bp" onclick="checkHL()">Check my highlights</button>
+        <button class="btn bs" onclick="resetHL()">Start again</button>
+      </div>
+      <div id="hlresult" style="margin-top:14px"></div>
+    </div>
+    <div class="sc">
+      <button class="btn bs" onclick="swTab(1,'learn',document.querySelector('#mod1 .snav .sb:nth-child(1)'))">&#8592; Back to Learn</button>
+      <button class="btn bs" onclick="swTab(1,'write',document.querySelector('#mod1 .snav .sb:nth-child(3)'))">Next: Write &amp; Reflect &#8594;</button>
+    </div>
+  </div>
+  <div class="tab" id="t1-write">
+    <div class="callout ci" id="task1"><strong>Your task:</strong> Write an introduction for: <em>"Remote work should become the default for all knowledge workers."</em> Include a hook, brief background, and a clear thesis.</div>
+    <div class="pb"><div class="pbt">📚 Phrase bank — introductions</div>
+      <div class="pbg"><div class="pbgl">Hooks</div><div class="chips" id="pb1hooks"><span class="chip">Recent data suggest that&#8230;</span><span class="chip">The question of&#8230; has become increasingly urgent&#8230;</span></div></div>
+      <div class="pbg"><div class="pbgl">Background context</div><div class="chips"><span class="chip">The debate centres on&#8230;</span><span class="chip">While&#8230; offers significant benefits, concerns about&#8230; persist.</span></div></div>
+      <div class="pbg"><div class="pbgl">Thesis signals</div><div class="chips"><span class="chip">This essay argues that&#8230;</span><span class="chip">This paper contends that&#8230;</span><span class="chip">The evidence supports the conclusion that&#8230;</span></div></div>
+    </div>
+    <div class="wcard"><div class="wch"><span>✍</span> Your Introduction</div>
+      <textarea id="in1" placeholder="Start with a broad hook, add context, then end with your thesis&#8230;" oninput="wc('wc1',this)"></textarea>
+      <div class="wcf"><span class="wcc" id="wc1">0 words</span><button class="btn bs" onclick="clr('in1','wc1')">Clear</button></div>
+    </div>
+    <div class="cl"><h4>✅ Self-check</h4>
+      <div class="ci2" onclick="tog(this)"><div class="cb"></div><div class="ct2">My opening sentence is a <strong>hook</strong> — broad, engaging, draws the reader in</div></div>
+      <div class="ci2" onclick="tog(this)"><div class="cb"></div><div class="ct2">I provide <strong>background context</strong> — the reader understands the debate before my thesis</div></div>
+      <div class="ci2" onclick="tog(this)"><div class="cb"></div><div class="ct2">My <strong>thesis</strong> is the final sentence and takes a clear, debatable position</div></div>
+      <div class="ci2" onclick="tog(this)"><div class="cb"></div><div class="ct2">My thesis is <strong>specific</strong> — a claim someone could argue against</div></div>
+      <div class="ci2" onclick="tog(this)"><div class="cb"></div><div class="ct2">I have <strong>avoided</strong> "In this essay I will&#8230;"</div></div>
+      <div class="ci2" onclick="tog(this)"><div class="cb"></div><div class="ct2">My language is <strong>academic</strong> — formal register, no contractions</div></div>
+      <button class="btn bp" style="margin-top:14px" onclick="doScore('sc1',6)">See my score</button>
+      <div class="sc2" id="sc1"></div>
+    </div>
+    <div class="ma"><button class="mabtn" onclick="togMA('ma1b','ma1a')">📄 See a model answer <span id="ma1a">&#9660;</span></button>
+      <div class="mabody" id="ma1b"><div id="ma1c" style="font-size:13px;color:var(--faint);font-style:italic">Select a discipline above to see a model answer.</div></div>
+    </div>
+    <div class="sc">
+      <button class="btn bs" onclick="swTab(1,'spot',document.querySelector('#mod1 .snav .sb:nth-child(2)'))">&#8592; Back to Spot &amp; Identify</button>
+      <button class="bn" onclick="goMod(2)">Next Module: Arguments &#8594;</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODULE 2: SUPPORTING ARGUMENTS -->
+<div class="module" id="mod2">
+  <span class="tag">Module 2 &middot; Main Body</span>
+  <h1 class="mt">Supporting Arguments &amp; Evidence</h1>
+  <p class="md">Body paragraphs develop your thesis through a clear claim, supporting evidence, and explanation. Each paragraph advances one main idea.</p>
+  <div class="dsel" id="ds2"></div><div class="dbar" id="db2"></div>
+  <div class="snav">
+    <button class="sb active" onclick="swTab(2,'learn',this)"><div class="sico">📖</div><div><span class="slbl">Stage 1</span><span class="stit">Learn</span><span class="sdesc">Concepts &amp; annotated examples</span></div></button>
+    <button class="sb" onclick="swTab(2,'spot',this)"><div class="sico">🔍</div><div><span class="slbl">Stage 2</span><span class="stit">Spot &amp; Identify</span><span class="sdesc">Label PEEL components</span></div></button>
+    <button class="sb" onclick="swTab(2,'write',this)"><div class="sico">✍️</div><div><span class="slbl">Stage 3</span><span class="stit">Write &amp; Reflect</span><span class="sdesc">Write your own + model answer</span></div></button>
+  </div>
+  <div class="tab active" id="t2-learn">
+    <div class="two">
+      <div>
+        <div class="box"><h3><span class="ico ig">📌</span>The PEEL structure</h3>
+          <p style="font-size:13.5px;color:var(--muted);line-height:1.8;margin-bottom:7px"><strong>P — Point:</strong> State the argument (topic sentence).</p>
+          <p style="font-size:13.5px;color:var(--muted);line-height:1.8;margin-bottom:7px"><strong>E — Evidence:</strong> Provide data, studies, or expert opinion.</p>
+          <p style="font-size:13.5px;color:var(--muted);line-height:1.8;margin-bottom:7px"><strong>E — Explanation:</strong> Explain how the evidence supports your point.</p>
+          <p style="font-size:13.5px;color:var(--muted);line-height:1.8"><strong>L — Link:</strong> Connect back to the thesis or transition forward.</p>
+        </div>
+        <div class="callout ct"><strong>Hedging language:</strong> Use "suggests," "indicates," "may contribute to" — showing academic caution rather than overstating claims.</div>
+        <div class="ep"><div class="ep-h"><span>&#9888;</span>Common errors</div><div class="ep-b">
+          <div class="ei"><div class="eib">!</div><span>"Evidence dumping" — quoting data without explaining how it supports your point</span></div>
+          <div class="ei"><div class="eib">!</div><span>Unsupported assertions — making claims with no evidence at all</span></div>
+          <div class="ei"><div class="eib">!</div><span>Missing the Link sentence — never leave a paragraph floating</span></div>
+        </div></div>
+      </div>
+      <div>
+        <div class="legend">
+          <div class="li"><div class="ld" style="background:#b3d9ff"></div>Point</div>
+          <div class="li"><div class="ld" style="background:#fff3a3"></div>Evidence</div>
+          <div class="li"><div class="ld" style="background:#b3f5c8"></div>Explanation</div>
+          <div class="li"><div class="ld" style="background:#e6f0ff"></div>Link</div>
+        </div>
+        <div class="ex" id="ex2">
+          <span class="hl hb">International regulation would establish baseline safety standards, preventing a regulatory race to the bottom.</span> <span class="hl hy">A 2023 OECD report found that 78% of AI-related harms over the previous decade occurred in jurisdictions with weak or absent AI oversight.</span> <span class="hl hg">This pattern suggests that regulatory absence actively enables harm, and that companies may strategically locate risk-generating operations in less regulated environments.</span> <span class="hl hx">Therefore, without a unified international standard, regulatory arbitrage will continue to undermine AI safety efforts globally.</span>
+        </div>
+      </div>
+    </div>
+    <div class="sc"><button class="btn bs" onclick="swTab(2,'spot',document.querySelector('#mod2 .snav .sb:nth-child(2)'))">Next: Spot &amp; Identify &#8594;</button></div>
+  </div>
+  <div class="tab" id="t2-spot">
+    <div class="box">
+      <h4 style="font-size:12.5px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.8px;margin-bottom:10px">🔍 Label each sentence — PEEL</h4>
+      <p style="font-size:13.5px;color:var(--muted);margin-bottom:12px">Click the correct PEEL label for each sentence.</p>
+      <div id="peel-quiz"></div>
+      <button class="btn bp" onclick="chkPEEL()" style="margin-top:10px">Check Answers</button>
+      <div id="peel-result" style="margin-top:10px;font-size:13.5px"></div>
+    </div>
+    <div class="sc">
+      <button class="btn bs" onclick="swTab(2,'learn',document.querySelector('#mod2 .snav .sb:nth-child(1)'))">&#8592; Back to Learn</button>
+      <button class="btn bs" onclick="swTab(2,'write',document.querySelector('#mod2 .snav .sb:nth-child(3)'))">Next: Write &amp; Reflect &#8594;</button>
+    </div>
+  </div>
+  <div class="tab" id="t2-write">
+    <div class="callout ci" id="task2"><strong>Your task:</strong> Write one PEEL body paragraph for the thesis: <em>"Remote work should become the default for all knowledge workers."</em></div>
+    <div class="pb"><div class="pbt">📚 Phrase bank — supporting arguments</div>
+      <div class="pbg"><div class="pbgl">Introducing evidence</div><div class="chips" id="pb2hooks"><span class="chip">According to [Author, Year]&#8230;</span><span class="chip">A study by X found that&#8230;</span></div></div>
+      <div class="pbg"><div class="pbgl">Explaining / hedging</div><div class="chips"><span class="chip">This suggests that&#8230;</span><span class="chip">These findings indicate&#8230;</span><span class="chip">It can be argued that&#8230;</span></div></div>
+      <div class="pbg"><div class="pbgl">Linking back</div><div class="chips"><span class="chip">Therefore, it is clear that&#8230;</span><span class="chip">This underscores the argument that&#8230;</span></div></div>
+    </div>
+    <div class="wcard"><div class="wch"><span>✍</span> Your Supporting Argument Paragraph</div>
+      <textarea id="in2" placeholder="P: Topic sentence &#8594; E: Evidence &#8594; E: Explanation &#8594; L: Link" oninput="wc('wc2',this)"></textarea>
+      <div class="wcf"><span class="wcc" id="wc2">0 words</span><button class="btn bs" onclick="clr('in2','wc2')">Clear</button></div>
+    </div>
+    <div class="cl"><h4>✅ Self-check — PEEL</h4>
+      <div class="ci2" onclick="tog(this)"><div class="cb"></div><div class="ct2">Clear <strong>topic sentence (Point)</strong> stating one argument</div></div>
+      <div class="ci2" onclick="tog(this)"><div class="cb"></div><div class="ct2">Specific <strong>Evidence</strong> — a statistic, study, or expert view</div></div>
+      <div class="ci2" onclick="tog(this)"><div class="cb"></div><div class="ct2"><strong>Explanation</strong> connecting evidence to my argument</div></div>
+      <div class="ci2" onclick="tog(this)"><div class="cb"></div><div class="ct2"><strong>Link</strong> sentence back to the thesis</div></div>
+      <div class="ci2" onclick="tog(this)"><div class="cb"></div><div class="ct2"><strong>Hedging language</strong> used — no absolute unsupported claims</div></div>
+      <div class="ci2" onclick="tog(this)"><div class="cb"></div><div class="ct2">No <strong>personal opinion</strong> stated as fact</div></div>
+      <button class="btn bp" style="margin-top:14px" onclick="doScore('sc2',6)">See my score</button>
+      <div class="sc2" id="sc2"></div>
+    </div>
+    <div class="ma"><button class="mabtn" onclick="togMA('ma2b','ma2a')">📄 See a model answer <span id="ma2a">&#9660;</span></button>
+      <div class="mabody" id="ma2b"><div id="ma2c" style="font-size:13px;color:var(--faint);font-style:italic">Select a discipline above to see a model answer.</div></div>
+    </div>
+    <div class="sc">
+      <button class="btn bs" onclick="swTab(2,'spot',document.querySelector('#mod2 .snav .sb:nth-child(2)'))">&#8592; Back to Spot &amp; Identify</button>
+      <button class="bn" onclick="goMod(3)">Next Module: Counterarguments &#8594;</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODULE 3: COUNTERARGUMENTS -->
+<div class="module" id="mod3">
+  <span class="tag">Module 3 &middot; Main Body</span>
+  <h1 class="mt">Counterarguments &amp; Rebuttals</h1>
+  <p class="md">Acknowledging and refuting opposing views strengthens your argument and shows intellectual honesty.</p>
+  <div class="dsel" id="ds3"></div><div class="dbar" id="db3"></div>
+  <div class="snav">
+    <button class="sb active" onclick="swTab(3,'learn',this)"><div class="sico">📖</div><div><span class="slbl">Stage 1</span><span class="stit">Learn</span><span class="sdesc">Concepts &amp; annotated examples</span></div></button>
+    <button class="sb" onclick="swTab(3,'spot',this)"><div class="sico">🔍</div><div><span class="slbl">Stage 2</span><span class="stit">Spot &amp; Identify</span><span class="sdesc">C/R labelling exercise</span></div></button>
+    <button class="sb" onclick="swTab(3,'write',this)"><div class="sico">✍️</div><div><span class="slbl">Stage 3</span><span class="stit">Write &amp; Reflect</span><span class="sdesc">Write your own + model answer</span></div></button>
+  </div>
+  <div class="tab active" id="t3-learn">
+    <div class="two">
+      <div>
+        <div class="box"><h3><span class="ico ir">⚡</span>Counterargument–rebuttal structure</h3>
+          <p style="font-size:13.5px;color:var(--muted);line-height:1.8;margin-bottom:7px"><strong>1. Concession signal:</strong> "It is true that&#8230;", "Admittedly&#8230;", "Critics argue that&#8230;"</p>
+          <p style="font-size:13.5px;color:var(--muted);line-height:1.8;margin-bottom:7px"><strong>2. The opposing view:</strong> State it fairly — do not create a straw man.</p>
+          <p style="font-size:13.5px;color:var(--muted);line-height:1.8;margin-bottom:7px"><strong>3. Pivot word:</strong> "However," "Nevertheless," "Despite this,"</p>
+          <p style="font-size:13.5px;color:var(--muted);line-height:1.8"><strong>4. Your rebuttal:</strong> Explain why the counterargument is insufficient or outweighed.</p>
+        </div>
+        <div class="ep"><div class="ep-h"><span>&#9888;</span>Common errors</div><div class="ep-b">
+          <div class="ei"><div class="eib">!</div><span>The "straw man" — misrepresenting the opposing view</span></div>
+          <div class="ei"><div class="eib">!</div><span>Acknowledging a counterargument but never actually refuting it</span></div>
+          <div class="ei"><div class="eib">!</div><span>Missing the pivot word — the rebuttal blurs into the counterargument</span></div>
+        </div></div>
+      </div>
+      <div>
+        <div class="legend">
+          <div class="li"><div class="ld" style="background:#ffd6d6"></div>Counterargument</div>
+          <div class="li"><div class="ld" style="background:#fff3a3"></div>Rebuttal</div>
+        </div>
+        <div class="ex" id="ex3">
+          <span class="hl hr">Critics of international AI regulation argue that a binding global framework would stifle innovation by imposing burdensome compliance requirements on smaller technology firms.</span> <span class="hl hy">However, this concern conflates regulatory burden with regulatory necessity. Evidence from the pharmaceutical industry — where international standards exist yet innovation continues at pace — suggests that well-designed regulations can coexist with responsible innovation by creating clearer operational boundaries.</span>
+        </div>
+      </div>
+    </div>
+    <div class="sc"><button class="btn bs" onclick="swTab(3,'spot',document.querySelector('#mod3 .snav .sb:nth-child(2)'))">Next: Spot &amp; Identify &#8594;</button></div>
+  </div>
+  <div class="tab" id="t3-spot">
+    <div class="box">
+      <h4 style="font-size:12.5px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.8px;margin-bottom:10px">🔍 Counterargument or rebuttal?</h4>
+      <p style="font-size:13.5px;color:var(--muted);margin-bottom:12px">Click <strong>C</strong> for counterargument, <strong>R</strong> for rebuttal.</p>
+      <div id="cr-quiz"></div>
+      <button class="btn bp" onclick="chkCR()" style="margin-top:10px">Check Answers</button>
+      <div id="cr-result" style="margin-top:10px;font-size:13.5px"></div>
+    </div>
+    <div class="sc">
+      <button class="btn bs" onclick="swTab(3,'learn',document.querySelector('#mod3 .snav .sb:nth-child(1)'))">&#8592; Back to Learn</button>
+      <button class="btn bs" onclick="swTab(3,'write',document.querySelector('#mod3 .snav .sb:nth-child(3)'))">Next: Write &amp; Reflect &#8594;</button>
+    </div>
+  </div>
+  <div class="tab" id="t3-write">
+    <div class="callout ci" id="task3"><strong>Your task:</strong> Write a counterargument and rebuttal for the remote work thesis. Acknowledge a genuine objection, then rebut it with reasoning or evidence.</div>
+    <div class="pb"><div class="pbt">📚 Phrase bank — counterarguments &amp; rebuttals</div>
+      <div class="pbg"><div class="pbgl">Concession signals</div><div class="chips" id="pb3hooks"><span class="chip">It is true that&#8230;</span><span class="chip">Admittedly&#8230;</span><span class="chip">Critics argue that&#8230;</span></div></div>
+      <div class="pbg"><div class="pbgl">Pivot words</div><div class="chips"><span class="chip">However,</span><span class="chip">Nevertheless,</span><span class="chip">Despite this,</span></div></div>
+      <div class="pbg"><div class="pbgl">Rebuttal language</div><div class="chips"><span class="chip">&#8230;overlooks the fact that&#8230;</span><span class="chip">&#8230;conflates X with Y&#8230;</span></div></div>
+    </div>
+    <div class="wcard"><div class="wch"><span>✍</span> Your Counterargument &amp; Rebuttal</div>
+      <textarea id="in3" placeholder="Concession signal + opposing view &#8594; pivot word &#8594; rebuttal" oninput="wc('wc3',this)"></textarea>
+      <div class="wcf"><span class="wcc" id="wc3">0 words</span><button class="btn bs" onclick="clr('in3','wc3')">Clear</button></div>
+    </div>
+    <div class="cl"><h4>✅ Self-check — counterargument &amp; rebuttal</h4>
+      <div class="ci2" onclick="tog(this)"><div class="cb"></div><div class="ct2">I open with a <strong>concession signal</strong></div></div>
+      <div class="ci2" onclick="tog(this)"><div class="cb"></div><div class="ct2">I state the opposing view <strong>fairly and fully</strong></div></div>
+      <div class="ci2" onclick="tog(this)"><div class="cb"></div><div class="ct2">I use a clear <strong>pivot word</strong></div></div>
+      <div class="ci2" onclick="tog(this)"><div class="cb"></div><div class="ct2">My <strong>rebuttal</strong> actually refutes — not just restates my thesis</div></div>
+      <div class="ci2" onclick="tog(this)"><div class="cb"></div><div class="ct2">Rebuttal supported by <strong>evidence or reasoning</strong></div></div>
+      <button class="btn bp" style="margin-top:14px" onclick="doScore('sc3',5)">See my score</button>
+      <div class="sc2" id="sc3"></div>
+    </div>
+    <div class="ma"><button class="mabtn" onclick="togMA('ma3b','ma3a')">📄 See a model answer <span id="ma3a">&#9660;</span></button>
+      <div class="mabody" id="ma3b"><div id="ma3c" style="font-size:13px;color:var(--faint);font-style:italic">Select a discipline above to see a model answer.</div></div>
+    </div>
+    <div class="sc">
+      <button class="btn bs" onclick="swTab(3,'spot',document.querySelector('#mod3 .snav .sb:nth-child(2)'))">&#8592; Back to Spot &amp; Identify</button>
+      <button class="bn" onclick="goMod(4)">Next Module: Conclusion &#8594;</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODULE 4: CONCLUSION -->
+<div class="module" id="mod4">
+  <span class="tag">Module 4 &middot; Conclusion</span>
+  <h1 class="mt">Writing a Strong Conclusion</h1>
+  <p class="md">The conclusion synthesises your argument, restates the thesis in new words, summarises key points, and ends with a broader implication.</p>
+  <div class="dsel" id="ds4"></div><div class="dbar" id="db4"></div>
+  <div class="snav">
+    <button class="sb active" onclick="swTab(4,'learn',this)"><div class="sico">📖</div><div><span class="slbl">Stage 1</span><span class="stit">Learn</span><span class="sdesc">Concepts &amp; annotated examples</span></div></button>
+    <button class="sb" onclick="swTab(4,'spot',this)"><div class="sico">🔍</div><div><span class="slbl">Stage 2</span><span class="stit">Spot &amp; Identify</span><span class="sdesc">Diagnose a weak conclusion</span></div></button>
+    <button class="sb" onclick="swTab(4,'write',this)"><div class="sico">✍️</div><div><span class="slbl">Stage 3</span><span class="stit">Write &amp; Reflect</span><span class="sdesc">Write your own + model answer</span></div></button>
+  </div>
+  <div class="tab active" id="t4-learn">
+    <div class="two">
+      <div>
+        <div class="box"><h3><span class="ico ip">🏁</span>Conclusion structure</h3>
+          <p style="font-size:13.5px;color:var(--muted);line-height:1.8;margin-bottom:7px"><strong>Restate thesis:</strong> Rephrase in new words — do not copy the original.</p>
+          <p style="font-size:13.5px;color:var(--muted);line-height:1.8;margin-bottom:7px"><strong>Summarise:</strong> Briefly revisit 2–3 key arguments without repeating full evidence.</p>
+          <p style="font-size:13.5px;color:var(--muted);line-height:1.8"><strong>Broader implication:</strong> Why does this matter? What should happen next?</p>
+        </div>
+        <div class="callout ct"><strong>Useful openers:</strong> "Taken together, the evidence&#8230;" / "The foregoing analysis demonstrates&#8230;"</div>
+        <div class="ep"><div class="ep-h"><span>&#9888;</span>Common errors</div><div class="ep-b">
+          <div class="ei"><div class="eib">!</div><span>Introducing new evidence in the conclusion</span></div>
+          <div class="ei"><div class="eib">!</div><span>Copying the thesis word-for-word instead of rephrasing it</span></div>
+          <div class="ei"><div class="eib">!</div><span>"In conclusion, this essay has shown&#8230;" — formulaic and weak</span></div>
+        </div></div>
+      </div>
+      <div>
+        <div class="legend">
+          <div class="li"><div class="ld" style="background:#b3f5c8"></div>Restated thesis</div>
+          <div class="li"><div class="ld" style="background:#b3d9ff"></div>Summary</div>
+          <div class="li"><div class="ld" style="background:#fff3a3"></div>Broader implication</div>
+        </div>
+        <div class="ex" id="ex4">
+          <span class="hl hg">Taken together, the evidence presented strongly supports the view that coordinated international governance of AI is not optional but an urgent global necessity.</span> <span class="hl hb">The persistent pattern of harm in under-regulated environments, the feasibility of international standards in analogous sectors, and the inadequacy of national-level responses to transboundary AI risks all point to the same conclusion.</span> <span class="hl hy">As AI systems grow more capable and autonomous, the window for establishing meaningful governance frameworks may be narrowing; the international community would do well to act before the opportunity passes.</span>
+        </div>
+      </div>
+    </div>
+    <div class="sc"><button class="btn bs" onclick="swTab(4,'spot',document.querySelector('#mod4 .snav .sb:nth-child(2)'))">Next: Spot &amp; Identify &#8594;</button></div>
+  </div>
+  <div class="tab" id="t4-spot">
+    <div class="box">
+      <h4 style="font-size:12.5px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.8px;margin-bottom:10px">🔍 What is missing from this conclusion?</h4>
+      <p style="font-size:13.5px;color:var(--muted);margin-bottom:10px">Read the weak conclusion. Select all the elements it is <strong>missing</strong>.</p>
+      <div class="ex" style="margin-bottom:12px;border:2px dashed #ddd;font-style:italic">"In conclusion, this essay has discussed AI regulation. There are many reasons why regulation is important. Different countries have different laws. Therefore, AI regulation is a complex topic that requires further study."</div>
+      <div class="dopts" id="copts"></div>
+      <button class="btn bp" onclick="chkConc()" style="margin-top:10px">Check My Answer</button>
+      <div id="cresult" style="margin-top:10px;font-size:13.5px;line-height:1.7"></div>
+    </div>
+    <div class="sc">
+      <button class="btn bs" onclick="swTab(4,'learn',document.querySelector('#mod4 .snav .sb:nth-child(1)'))">&#8592; Back to Learn</button>
+      <button class="btn bs" onclick="swTab(4,'write',document.querySelector('#mod4 .snav .sb:nth-child(3)'))">Next: Write &amp; Reflect &#8594;</button>
+    </div>
+  </div>
+  <div class="tab" id="t4-write">
+    <div class="callout ci" id="task4"><strong>Your task:</strong> Write a conclusion for the remote work essay. Restate your thesis in new words, briefly summarise your main arguments, and end with a broader implication.</div>
+    <div class="pb"><div class="pbt">📚 Phrase bank — conclusions</div>
+      <div class="pbg"><div class="pbgl">Restating the thesis</div><div class="chips" id="pb4hooks"><span class="chip">Taken together, the evidence presented&#8230;</span><span class="chip">The foregoing analysis demonstrates&#8230;</span></div></div>
+      <div class="pbg"><div class="pbgl">Broader implication</div><div class="chips"><span class="chip">These findings underscore the urgency of&#8230;</span><span class="chip">Policymakers would do well to&#8230;</span></div></div>
+    </div>
+    <div class="wcard"><div class="wch"><span>✍</span> Your Conclusion</div>
+      <textarea id="in4" placeholder="Rephrase thesis &#8594; summarise key arguments &#8594; end with broader implication" oninput="wc('wc4',this)"></textarea>
+      <div class="wcf"><span class="wcc" id="wc4">0 words</span><button class="btn bs" onclick="clr('in4','wc4')">Clear</button></div>
+    </div>
+    <div class="cl"><h4>✅ Self-check — conclusion</h4>
+      <div class="ci2" onclick="tog(this)"><div class="cb"></div><div class="ct2">I <strong>restate my thesis</strong> in new words — not copied</div></div>
+      <div class="ci2" onclick="tog(this)"><div class="cb"></div><div class="ct2">Main arguments <strong>briefly summarised</strong> without full evidence</div></div>
+      <div class="ci2" onclick="tog(this)"><div class="cb"></div><div class="ct2">Ends with a <strong>broader implication</strong></div></div>
+      <div class="ci2" onclick="tog(this)"><div class="cb"></div><div class="ct2"><strong>No new evidence</strong> introduced</div></div>
+      <div class="ci2" onclick="tog(this)"><div class="cb"></div><div class="ct2">Avoids "In conclusion, this essay has shown&#8230;"</div></div>
+      <button class="btn bp" style="margin-top:14px" onclick="doScore('sc4',5)">See my score</button>
+      <div class="sc2" id="sc4"></div>
+    </div>
+    <div class="ma"><button class="mabtn" onclick="togMA('ma4b','ma4a')">📄 See a model answer <span id="ma4a">&#9660;</span></button>
+      <div class="mabody" id="ma4b"><div id="ma4c" style="font-size:13px;color:var(--faint);font-style:italic">Select a discipline above to see a model answer.</div></div>
+    </div>
+    <div class="sc">
+      <button class="btn bs" onclick="swTab(4,'spot',document.querySelector('#mod4 .snav .sb:nth-child(2)'))">&#8592; Back to Spot &amp; Identify</button>
+      <button class="bn" onclick="goMod(5)">Next: Resources &#8594;</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODULE 5: RESOURCES -->
+<div class="module" id="mod5">
+  <span class="tag">Module 5 &middot; Further Reading</span>
+  <h1 class="mt">Resources &amp; Further Reading</h1>
+  <p class="md">A curated collection of books, websites, guides, and tools to help postgraduate international students develop their academic writing.</p>
+
+  <div class="rc"><div class="rct"><span>📚</span> Book Recommendations</div><div class="rg">
+    <div class="rcard"><div class="rtype rt-book">Book</div><div class="rtitle">Academic Writing for Graduate Students</div><div class="rauth">John M. Swales &amp; Christine B. Feak (3rd ed., 2012)</div><div class="rdesc">The definitive textbook for non-native English writers at postgraduate level. Covers genre awareness, hedging language, paragraph structure, and disciplinary conventions, with integrated exercises throughout. Widely assigned in graduate writing programmes worldwide.</div></div>
+    <div class="rcard"><div class="rtype rt-book">Book</div><div class="rtitle">How to Write a Lot</div><div class="rauth">Paul J. Silvia (2nd ed., 2018)</div><div class="rdesc">A concise, practical guide to becoming a more productive academic writer. Silvia debunks common excuses and shows how scheduling regular writing sessions — rather than waiting for long stretches of free time — is the key to completing dissertations, articles, and grant proposals without sacrificing work-life balance.</div></div>
+    <div class="rcard"><div class="rtype rt-book">Book</div><div class="rtitle">Becoming an Academic Writer</div><div class="rauth">Patricia Goodson (3rd ed., 2022)</div><div class="rdesc">A workbook of 50 exercises designed to build a sustainable writing habit through deep, deliberate daily practice. Based on the POWER model, it is especially well suited to graduate students and includes dedicated tips for ESL writers alongside evidence-based strategies for overcoming writer's block.</div></div>
+    <div class="rcard"><div class="rtype rt-book">Book</div><div class="rtitle">Longman Academic Writing Series 5: Essays to Research Papers</div><div class="rauth">Alan Meyers (2014)</div><div class="rdesc">The advanced level of a five-level writing series for English language learners. Covers the full writing process from prewriting to revision, with a focus on rhetorical genres — classification, argument, cause/effect, summary/response, and the research paper — integrating grammar, vocabulary, and sentence structure throughout.</div></div>
+    <div class="rcard"><div class="rtype rt-book">Book</div><div class="rtitle">Longman Academic Writing Series 2: Paragraphs</div><div class="rauth">Ann Hogue (3rd ed., 2016)</div><div class="rdesc">Aimed at high-beginning to low-intermediate English language learners, this level focuses on writing well-organised academic paragraphs. Step-by-step guidance covers topic sentences, supporting details, unity, coherence, and paragraph mechanics — with realistic models and integrated grammar practice.</div></div>
+    <div class="rcard"><div class="rtype rt-book">Book</div><div class="rtitle">The Oxford Essential Guide to Writing</div><div class="rauth">Thomas S. Kane (2000)</div><div class="rdesc">A comprehensive, accessible handbook covering the full scope of writing — from finding a subject and planning a structure, through crafting sentences and paragraphs, to punctuation and revision. Illustrated with examples from accomplished writers and useful for both academic and general writing contexts.</div></div>
+    <div class="rcard"><div class="rtype rt-book">Book</div><div class="rtitle">The Vocabulary Builder Workbook</div><div class="rauth">Chris Lele / Magoosh (2018)</div><div class="rdesc">A theme-organised workbook for building an academic vocabulary of over 1,400 essential words. Lessons focus on word roots, associations, and contextual meaning, with exercises designed for long-term retention. Particularly useful for international students expanding their written and spoken English register.</div></div>
+    <div class="rcard"><div class="rtype rt-book">Book</div><div class="rtitle">Writing Tools: 55 Essential Strategies for Every Writer</div><div class="rauth">Roy Peter Clark (10th anniversary ed., 2016)</div><div class="rdesc">Fifty-five concise, practical tools for improving writing at the sentence and paragraph level. Drawn from journalism and literature, the tools are accessible to academic writers and include a short practice exercise at the end of each chapter.</div></div>
+    <div class="rcard"><div class="rtype rt-book">Book</div><div class="rtitle">Academic Writing and Grammar for Students</div><div class="rauth">Alex Osmond (3rd ed., 2024)</div><div class="rdesc">A practical, student-friendly guide to the grammar, punctuation, and conventions of academic English. Covers conciseness, critical thinking, hedging, referencing, and proofreading. All examples are drawn from real academic writing across multiple disciplines, making it especially relevant for international students.</div></div>
+    <div class="rcard"><div class="rtype rt-book">Book</div><div class="rtitle">Stylish Academic Writing</div><div class="rauth">Helen Sword (2012)</div><div class="rdesc">Challenges the assumption that academic writing must be dense and impersonal. Drawing on analysis of thousands of published articles, Sword offers practical guidance on developing clarity, voice, and engaging prose while maintaining academic rigour. Essential reading for writers who want their work to be both credible and readable.</div></div>
+    <div class="rcard"><div class="rtype rt-book">Book</div><div class="rtitle">The Elements of Academic Style</div><div class="rauth">Eric Hayot (2014)</div><div class="rdesc">A guide to the craft of humanities academic writing, with a focus on how arguments are built, structured, and sustained across long-form pieces. Particularly useful for understanding how to move between evidence and analysis, and how to develop a distinctive scholarly voice. Widely recommended in PhD programmes.</div></div>
+    <div class="rcard"><div class="rtype rt-book">Book</div><div class="rtitle">They Say / I Say</div><div class="rauth">Gerald Graff &amp; Cathy Birkenstein (4th ed., 2018)</div><div class="rdesc">One of the most widely assigned academic writing books in the world. Teaches students how to position their argument in relation to existing scholarly debate. Provides reusable sentence templates for entering academic conversations, making counterarguments, and avoiding common pitfalls.</div></div>
+  </div></div>
+
+  <div class="rc"><div class="rct"><span>🌐</span> Free Online Resources</div><div class="rg">
+    <div class="rcard"><div class="rtype rt-web">Website</div><div class="rtitle">Academic Phrasebank</div><div class="rauth">University of Manchester</div><div class="rdesc">An invaluable reference of academic phrases organised by function — introducing arguments, hedging, referring to evidence, describing methodology, writing conclusions.</div><a class="rlink" href="https://www.phrasebank.manchester.ac.uk" target="_blank">phrasebank.manchester.ac.uk →</a><span class="rbadge">Free</span></div>
+    <div class="rcard"><div class="rtype rt-web">Website</div><div class="rtitle">The Writing Center at UNC Chapel Hill</div><div class="rauth">University of North Carolina</div><div class="rdesc">Detailed handouts on argument, evidence, counterarguments, thesis statements, and genre-specific challenges. One of the best free resources for postgraduate writers.</div><a class="rlink" href="https://writingcenter.unc.edu/tips-and-tools/" target="_blank">writingcenter.unc.edu →</a><span class="rbadge">Free</span></div>
+    <div class="rcard"><div class="rtype rt-web">Website</div><div class="rtitle">Harvard Writing Center Resources</div><div class="rauth">Harvard University</div><div class="rdesc">Guides covering thesis development, argument structure, close reading, and discipline-specific writing. Peer writing fellows' tips are especially practical and accessible.</div><a class="rlink" href="https://writingcenter.fas.harvard.edu" target="_blank">writingcenter.fas.harvard.edu →</a><span class="rbadge">Free</span></div>
+    <div class="rcard"><div class="rtype rt-web">Website</div><div class="rtitle">What is Academic Writing?</div><div class="rauth">EAP Foundation</div><div class="rdesc">A clearly written introduction to the key features of academic writing — covering structure, evidence, hedging, objectivity, and formal register — with further sections on essay types, the writing process, and academic style. Designed for EAP students preparing for university study.</div><a class="rlink" href="https://www.eapfoundation.com/writing/what/" target="_blank">eapfoundation.com →</a><span class="rbadge">Free</span></div>
+    <div class="rcard"><div class="rtype rt-web">Website</div><div class="rtitle">Guide to Academic Writing</div><div class="rauth">Times Higher Education Campus</div><div class="rdesc">A spotlight collection of articles and advice from academics, publishers, and postdocs on improving academic writing — covering argument development, abstract writing, literature reviews, publication, and productivity strategies.</div><a class="rlink" href="https://www.timeshighereducation.com/campus/spotlight/guide-academic-writing" target="_blank">timeshighereducation.com →</a><span class="rbadge">Free</span></div>
+    <div class="rcard"><div class="rtype rt-web">Website</div><div class="rtitle">Reading, Writing and Referencing</div><div class="rauth">University of Melbourne Academic Skills</div><div class="rdesc">A comprehensive hub of guides, videos, and resources covering academic writing, critical analysis, paragraph structure, paraphrasing, essay planning, and all major referencing styles.</div><a class="rlink" href="https://students.unimelb.edu.au/academic-skills/resources/reading,-writing-and-referencing" target="_blank">students.unimelb.edu.au →</a><span class="rbadge">Free</span></div>
+    <div class="rcard"><div class="rtype rt-web">Website</div><div class="rtitle">Academic Writing Skills</div><div class="rauth">Flinders University</div><div class="rdesc">A student-facing guide covering the core skills of academic writing — essay structure, argument development, paragraph construction, academic style, and critical analysis.</div><a class="rlink" href="https://students.flinders.edu.au/support/slss/online-guides/academic-writing-skills" target="_blank">students.flinders.edu.au →</a><span class="rbadge">Free</span></div>
+    <div class="rcard"><div class="rtype rt-web">Website</div><div class="rtitle">Critical Writing Library Guide</div><div class="rauth">University of Pennsylvania Libraries</div><div class="rdesc">A research and writing guide covering how to get started with critical writing, find and evaluate sources across different genres, and develop evidence-based arguments.</div><a class="rlink" href="https://guides.library.upenn.edu/c.php?g=1492443&p=11143050" target="_blank">guides.library.upenn.edu →</a><span class="rbadge">Free</span></div>
+    <div class="rcard"><div class="rtype rt-web">Website</div><div class="rtitle">Writing Fundamentals</div><div class="rauth">RMIT University Learning Lab</div><div class="rdesc">An interactive online resource covering the fundamentals of academic writing — including academic style, paragraph structure, essay organisation, paraphrasing, and an academic word list tool.</div><a class="rlink" href="https://learninglab.rmit.edu.au/writing-fundamentals/" target="_blank">learninglab.rmit.edu.au →</a><span class="rbadge">Free</span></div>
+  </div></div>
+
+  <div class="rc"><div class="rct"><span>🛠️</span> Useful Writing Tools</div><div class="rg">
+    <div class="rcard"><div class="rtype rt-tool">Tool</div><div class="rtitle">Zotero</div><div class="rauth">Corporation for Digital Scholarship</div><div class="rdesc">Free, open-source reference manager. Collects, organises, and formats citations automatically. Essential for managing references in postgraduate work. Works with Word, Google Docs, and LibreOffice.</div><a class="rlink" href="https://www.zotero.org" target="_blank">zotero.org →</a><span class="rbadge">Free</span></div>
+    <div class="rcard"><div class="rtype rt-tool">Tool</div><div class="rtitle">Grammarly</div><div class="rauth">Grammarly Inc.</div><div class="rdesc">Grammar, clarity, and style checker. Useful for catching sentence-level errors and register issues. Use critically — it checks language, not whether your argument makes sense.</div><a class="rlink" href="https://www.grammarly.com" target="_blank">grammarly.com →</a><span class="rbadge">Free (basic)</span></div>
+    <div class="rcard"><div class="rtype rt-tool">Tool</div><div class="rtitle">Hemingway Editor</div><div class="rauth">Hemingway App</div><div class="rdesc">Highlights overly complex sentences, passive voice overuse, and readability issues — helps identify where writing may be unclear or unnecessarily convoluted.</div><a class="rlink" href="https://hemingwayapp.com" target="_blank">hemingwayapp.com →</a><span class="rbadge">Free</span></div>
+    <div class="rcard"><div class="rtype rt-tool">Tool</div><div class="rtitle">Connected Papers</div><div class="rauth">Connected Papers Ltd.</div><div class="rdesc">Visual map of academic papers related to any source you enter. Excellent for finding key literature in a field quickly — useful for building evidence-based arguments.</div><a class="rlink" href="https://www.connectedpapers.com" target="_blank">connectedpapers.com →</a><span class="rbadge">Free (limited)</span></div>
+    <div class="rcard"><div class="rtype rt-tool">Tool</div><div class="rtitle">Linguee</div><div class="rauth">DeepL SE</div><div class="rdesc">A bilingual dictionary and translation search engine that shows words and phrases in context, using millions of authentic human-translated sentence pairs. Unlike standard translators, it shows how expressions are actually used across different registers — invaluable for international writers choosing precise academic phrasing in English.</div><a class="rlink" href="https://www.linguee.com" target="_blank">linguee.com →</a><span class="rbadge">Free</span></div>
+    <div class="rcard"><div class="rtype rt-tool">Tool</div><div class="rtitle">Elicit</div><div class="rauth">Elicit Inc.</div><div class="rdesc">An AI-powered research assistant that searches over 138 million academic papers using natural language questions. Summarises papers, extracts key data, and helps identify relevant sources — useful for building an evidence base for academic arguments. All claims are backed by sentence-level citations.</div><a class="rlink" href="https://elicit.com" target="_blank">elicit.com →</a><span class="rbadge">Free (basic)</span></div>
+    <div class="rcard"><div class="rtype rt-tool">Tool</div><div class="rtitle">CorpusMate</div><div class="rauth">University of Queensland</div><div class="rdesc">A free corpus tool that lets you search written and spoken academic language across 20 disciplinary subject areas. Helps writers see how words and phrases are actually used in their discipline — particularly useful for international students developing academic vocabulary and register in English.</div><a class="rlink" href="https://corpusmate.com" target="_blank">corpusmate.com →</a><span class="rbadge">Free</span></div>
+  </div></div>
+
+  <div class="rc"><div class="rct"><span>🔗</span> Research &amp; Writing Resource Collections</div><div class="rg">
+    <div class="rcard"><div class="rtype rt-guide">GitHub Resource</div><div class="rtitle">Awesome Research Tools</div><div class="rauth">emptymalei / GitHub</div><div class="rdesc">A community-curated list of tools and resources covering all aspects of the research process — writing, note-taking, reference management, data analysis, version control, presentation, and publishing. A useful starting point for exploring the broader research toolkit beyond writing alone.</div><a class="rlink" href="https://github.com/emptymalei/awesome-research" target="_blank">github.com/emptymalei/awesome-research →</a><span class="rbadge">Free</span></div>
+  </div></div>
+
+  <div class="sc"><button class="btn bs" onclick="goMod(4)">&#8592; Back to Conclusion</button><div class="sh">Well done for completing all modules!</div></div>
+</div>
+
+</div><!-- /app -->
+
+<script>
+
+function goMod(n){
+  document.querySelectorAll('.module').forEach(function(m){m.classList.remove('active');});
+  document.getElementById('mod'+n).classList.add('active');
+  document.querySelectorAll('.pill').forEach(function(p,i){p.classList.toggle('active',i===n);});
+  window.scrollTo({top:0,behavior:'smooth'});
+  if(n===2)buildPEEL();
+  if(n===3)buildCR();
+  if(n===4)buildConc();
+}
+function swTab(mod,tab,btn){
+  document.querySelectorAll('#mod'+mod+' .tab').forEach(function(t){t.classList.remove('active');});
+  var el=document.getElementById('t'+mod+'-'+tab);if(el)el.classList.add('active');
+  if(btn){
+    btn.closest('.snav').querySelectorAll('.sb').forEach(function(b){b.classList.remove('active');});
+    btn.classList.add('active');
+  } else {
+    var idx={learn:0,spot:1,write:2}[tab];
+    document.querySelectorAll('#mod'+mod+' .snav .sb').forEach(function(b,i){b.classList.toggle('active',i===idx);});
+  }
+}
+function wc(id,el){var w=el.value.trim()?el.value.trim().split(/\s+/).length:0;document.getElementById(id).textContent=w+' word'+(w!==1?'s':'');}
+function clr(tid,wid){document.getElementById(tid).value='';document.getElementById(wid).textContent='0 words';}
+function tog(el){el.classList.toggle('checked');el.querySelector('.cb').textContent=el.classList.contains('checked')?'✓':'';}
+function doScore(id,total){
+  var el=document.getElementById(id);
+  var checked=el.parentElement.querySelectorAll('.ci2.checked').length;
+  var p=checked/total;
+  el.className='sc2 show '+(p===1?'great':p>=0.6?'ok':'low');
+  el.textContent=p===1?'✓ Excellent — '+checked+'/'+total+'. All key requirements addressed.':p>=0.6?checked+'/'+total+' — Good progress. Revisit the unchecked items.':checked+'/'+total+' — Several elements missing. Review Stage 1 and try again.';
+}
+function togMA(bid,aid){var b=document.getElementById(bid),a=document.getElementById(aid);b.classList.toggle('open');a.textContent=b.classList.contains('open')?'▲':'▼';}
+
+var DISC={"law":{"label":"Law","icon":"⚖️","subs":{"intl":{"label":"International Law","topic":"international criminal accountability","phrases":["customary international law requires…","treaty obligations mandate…","the doctrine of X holds that…","jus cogens norms require…","state responsibility arises when…"],"ex1":"hook|The establishment of the ICC in 2002 was the most significant institutional development in international criminal law since Nuremberg, yet the Court's record — marked by selective prosecution and contested jurisdiction — has generated profound debate about whether international criminal justice can deliver meaningful accountability.|bg|Critics have focused on the ICC's structural dependence on state cooperation, perceived prosecutorial focus on African defendants, and the notable absence of major powers from its jurisdiction.|th|This essay argues that, notwithstanding its structural limitations, the ICC represents an indispensable framework for accountability whose reform — rather than abandonment — is the appropriate response to its demonstrated shortcomings.","ex2":"pt|The ICC has made substantive contributions to international criminal law beyond its conviction record, through normative and deterrent effects.|ev|Jo and Simmons (2016) analysed conduct in 139 conflicts (1989–2011) and found that government forces under ICC scrutiny were significantly more likely to reduce civilian targeting than non-scrutinised counterparts, suggesting credible deterrence even without prosecution.|ex|This deterrent operates through expressive power — ICC jurisdiction alters perpetrators' cost-benefit calculations by raising reputational and legal risk even where enforcement capacity is limited, demonstrating the Court's value cannot be assessed by conviction rates alone.|lk|The normative contribution to reducing civilian harm represents significant value that critics focused on prosecution statistics consistently undervalue.","ex3":"cr|Sovereignty-focused critics argue that the ICC fundamentally violates non-interference by asserting jurisdiction over nationals of non-member states when crimes occur on member state territory.|rb|However, this mischaracterises the jurisdictional basis. Territorial jurisdiction — governing conduct on a state's own territory — is among the most ancient principles of public international law. When the Rome Statute exercises jurisdiction over crimes committed on member state territory, it operates through the territorial consent of the host state rather than imposing authority on non-member states.","task1":"Write an introduction for: <em>States should be legally obligated to provide asylum to individuals fleeing climate-related displacement.</em>","task2":"Write one PEEL paragraph for the climate asylum thesis.","task3":"Write a counterargument and rebuttal for the climate asylum thesis.","task4":"Write a conclusion for the climate asylum essay.","model1":"<b>Hook</b> The ICC's establishment in 2002 was the most significant development in international criminal law since Nuremberg — yet selective prosecution and contested jurisdiction have generated profound debate about whether international criminal justice can deliver meaningful accountability. <b>Background</b> Critics focus on structural dependence on state cooperation, perceived prosecutorial bias, and the absence of major powers. <b>Thesis</b> This essay argues that, notwithstanding its limitations, the ICC represents an indispensable framework whose reform — rather than abandonment — is the appropriate response.","model2":"<b>Point</b> The ICC has made substantive contributions beyond its conviction record through normative and deterrent effects. <b>Evidence</b> Jo and Simmons (2016) found across 139 conflicts that government forces under ICC scrutiny were significantly more likely to reduce civilian targeting than non-scrutinised counterparts. <b>Explanation</b> This deterrent operates through expressive power — ICC jurisdiction alters cost-benefit calculations by raising legal and reputational risk even without prosecution, showing the Court's value cannot be measured by conviction rates alone. <b>Link</b> The normative contribution to reducing civilian harm represents significant value that critics focused on prosecution statistics consistently undervalue.","model3":"<b>Concession</b> Sovereignty critics argue the ICC violates non-interference by asserting jurisdiction over nationals of non-member states — subordinating sovereign states to an institution they have not consented to join. <b>Pivot + rebuttal</b> However, this mischaracterises the jurisdictional basis. Territorial jurisdiction — governing conduct on a state's own territory — is among the most ancient principles of international law. The Rome Statute operates through the territorial consent of the host state, not by imposing authority on non-member states.","model4":"<b>Restated thesis</b> The ICC's normative and deterrent contributions significantly exceed what prosecution statistics suggest, making the case for reform rather than abandonment compelling. <b>Summary</b> Jo and Simmons's deterrence evidence, the sound legal basis for territorial jurisdiction, and the absence of a viable institutional alternative all support reforming rather than abandoning international criminal justice. <b>Implication</b> The choice is not between a perfect and an imperfect court, but between an imperfect institution capable of improvement and the return to the impunity that characterised the pre-ICC landscape."},"hr":{"label":"Human Rights Law","topic":"corporate supply chain accountability","phrases":["under international human rights law…","domestic courts have increasingly held…","the principle of due diligence requires…","positive obligations under Article X…","state responsibility arises when…"],"ex1":"hook|Global supply chains now extend across more than 200 countries, creating networks through which human rights abuses — from forced labour to unsafe factory conditions — can be indirectly facilitated by corporations incorporated in jurisdictions with strong domestic protections.|bg|The UN Guiding Principles on Business and Human Rights, endorsed in 2011, established a voluntary framework, but their non-binding nature has fuelled debate about whether binding treaty obligations are necessary for meaningful supply chain accountability.|th|This essay argues that the voluntary approach has proven structurally insufficient, and that a binding international treaty establishing mandatory human rights due diligence is both legally feasible and practically necessary.","ex2":"pt|Voluntary corporate human rights commitments are systematically undermined by competitive pressure to minimise due diligence costs.|ev|Research by Aluchna and Idowu (2017) across 200 multinationals found that self-reported performance consistently diverged from independently audited findings, with disclosure quality correlating with industry reputational risk rather than actual performance.|ex|This divergence suggests voluntary frameworks create incentives for compliance reporting rather than substantive compliance — a structural failure that binding legislation addresses by imposing legal liability irrespective of reputational exposure.|lk|Voluntary frameworks thus produce improvement principally where companies were already incentivised, leaving the most at-risk supply chain relationships largely unaffected.","ex3":"cr|Critics argue that imposing legal obligations on parent companies for independent suppliers' conduct constitutes extraterritorial jurisdiction — potentially violating sovereign equality and creating legal uncertainty for international trade.|rb|However, the French Duty of Vigilance Law and Germany's Supply Chain Act demonstrate that mandatory due diligence can be structured as domestic regulation governing domestically incorporated companies rather than as extraterritorial claims — preserving legal coherence while extending accountability to supply chains.","task1":"Write an introduction for: <em>Social media companies should be held legally responsible for algorithmic amplification of content inciting violence.</em>","task2":"Write one PEEL paragraph for the social media legal liability thesis.","task3":"Write a counterargument and rebuttal for the social media liability thesis.","task4":"Write a conclusion for the social media liability essay.","model1":"<b>Hook</b> Global supply chains extending across 200+ countries create networks through which human rights abuses can be facilitated by corporations incorporated in jurisdictions with strong domestic protections. <b>Background</b> The UN Guiding Principles established a voluntary framework in 2011, but their non-binding nature has fuelled debate about whether mandatory treaty obligations are necessary. <b>Thesis</b> This essay argues the voluntary approach has proven structurally insufficient, and a binding treaty establishing mandatory due diligence is both legally feasible and practically necessary.","model2":"<b>Point</b> Voluntary corporate human rights commitments are systematically undermined by competitive pressure to minimise due diligence costs. <b>Evidence</b> Aluchna and Idowu (2017) found across 200 multinationals that self-reported performance diverged from independently audited findings, with disclosure quality correlating with reputational risk rather than actual performance. <b>Explanation</b> This divergence suggests voluntary frameworks create incentives for compliance reporting rather than substantive compliance — a structural failure that binding legislation addresses by imposing liability irrespective of reputational exposure. <b>Link</b> Voluntary frameworks thus produce improvement principally where companies were already incentivised, leaving the most at-risk relationships unaffected.","model3":"<b>Concession</b> Critics argue mandatory due diligence constitutes extraterritorial jurisdiction — potentially violating sovereign equality and creating legal uncertainty. <b>Pivot + rebuttal</b> However, the French Duty of Vigilance Law and Germany's Supply Chain Act demonstrate mandatory due diligence can be structured as domestic regulation governing domestically incorporated companies, not extraterritorial claims. Companies exercise due diligence in their own commercial relationships — not govern foreign sovereign territory.","model4":"<b>Restated thesis</b> Voluntary human rights frameworks have not achieved the accountability they promised, and binding mandatory due diligence is both legally sound and practically necessary. <b>Summary</b> The structural failure of voluntarism, the demonstrated feasibility of domestic mandatory models, and the scale of harm in unaccountable supply chains all support this conclusion. <b>Implication</b> The ongoing UN treaty negotiation represents an opportunity to establish the accountability infrastructure global commerce urgently requires — bringing legal obligation into alignment with the moral responsibility companies have long claimed but rarely exercised."},"corp":{"label":"Corporate Law","topic":"shareholder primacy vs stakeholder governance","phrases":["agency law establishes that…","the business judgement rule provides…","fiduciary obligations under X…","derivative action standing requires…","director liability arises where…"],"ex1":"hook|The Business Roundtable's 2019 Statement — in which 181 CEOs pledged commitment to all stakeholders — marked a significant rhetorical shift in corporate governance philosophy, though its practical implications remain deeply contested.|bg|The shareholder primacy doctrine, associated with Milton Friedman's 1970 argument that a corporation's sole social responsibility is to increase profits, has dominated practice for decades, but growing concerns about inequality have renewed interest in stakeholder theories.|th|This essay argues that shareholder primacy is neither mandated by corporate law nor conducive to long-term value creation, and that a shift toward legally codified stakeholder obligations would improve both governance and social outcomes.","ex2":"pt|Contrary to widespread assumption, shareholder primacy is not a legal requirement in most jurisdictions but a governance norm sustained by managerial incentive structures.|ev|Stout (2012) demonstrated that Delaware fiduciary duties do not legally require profit maximisation, but grant directors wide discretion under the business judgement rule to consider long-term sustainability, employee welfare, and community impact.|ex|This reveals that shareholder primacy reflects a choice sustained by compensation structures tied to share price — meaning the transition to stakeholder governance requires incentive recalibration rather than fundamental legal reform.|lk|The path to stakeholder governance is therefore less legally obstructed than proponents often suggest — more a matter of political will than doctrinal transformation.","ex3":"cr|Defenders of shareholder primacy argue that diffuse stakeholder obligations create accountability gaps allowing managers to pursue their own interests under cover of stakeholder benefit claims, weakening shareholder discipline.|rb|However, this concern does not apply to well-designed accountability systems. The benefit corporation model, adopted across 35 US states, demonstrates that stakeholder-oriented governance can be combined with legally enforceable accountability requirements that prevent the managerial cover-of-stakeholder abuse critics identify.","task1":"Write an introduction for: <em>Directors of publicly listed companies should have a legally enforceable duty to consider environmental sustainability in corporate decisions.</em>","task2":"Write one PEEL paragraph for the environmental fiduciary duty thesis.","task3":"Write a counterargument and rebuttal for the environmental fiduciary duty thesis.","task4":"Write a conclusion for the environmental fiduciary duty essay.","model1":"<b>Hook</b> The Business Roundtable's 2019 pledge by 181 CEOs to serve all stakeholders marked a significant rhetorical shift in governance philosophy, though its practical implications remain deeply contested. <b>Background</b> Shareholder primacy has dominated practice for decades, but concerns about inequality and short-termism have renewed interest in stakeholder theories. <b>Thesis</b> This essay argues that shareholder primacy is neither legally mandated nor conducive to long-term value creation, and that a shift toward legally codified stakeholder obligations would improve both governance and social outcomes.","model2":"<b>Point</b> Shareholder primacy is not a legal requirement but a governance norm sustained by managerial incentive structures. <b>Evidence</b> Stout (2012) demonstrated that Delaware fiduciary duties do not legally require profit maximisation — the business judgement rule grants directors discretion to consider long-term sustainability, employee welfare, and community impact. <b>Explanation</b> This reveals shareholder primacy reflects a choice sustained by compensation tied to share price, meaning stakeholder governance requires incentive recalibration rather than fundamental legal reform. <b>Link</b> The path to stakeholder governance is less legally obstructed than proponents suggest — more a matter of institutional design than doctrinal transformation.","model3":"<b>Concession</b> Defenders argue diffuse stakeholder obligations create accountability gaps allowing managers to pursue self-interest under cover of stakeholder benefit claims, weakening shareholder discipline. <b>Pivot + rebuttal</b> However, this does not apply to well-designed accountability systems. The benefit corporation model, enacted across 35 US states, demonstrates stakeholder governance can be combined with legally enforceable requirements that prevent the managerial cover-of-stakeholder abuse critics identify.","model4":"<b>Restated thesis</b> Shareholder primacy is neither legally inevitable nor conducive to long-term value creation, and the tools for transition already exist where stakeholder-oriented legislation has been enacted. <b>Summary</b> Stout's analysis undermining the doctrinal basis for shareholder primacy and the benefit corporation model both support this conclusion. <b>Implication</b> The question is no longer whether stakeholder governance is legally sound, but whether lawmakers have the political will to revise the incentive structures sustaining shareholder primacy in the absence of a legal requirement."}}},"economics":{"label":"Economics & Business","icon":"📊","subs":{"business":{"label":"Business Management","topic":"remote work and organisational performance","phrases":["strategic management literature suggests…","agency theory holds that…","ROI analysis indicates…","employee retention data shows…","organisational behaviour research demonstrates…"],"ex1":"hook|The COVID-19 pandemic forced the largest unplanned experiment in remote work in modern history, with an estimated 42% of the US workforce working from home full-time at the height of lockdowns — generating a body of real-world performance data that organisations are still interpreting.|bg|As hybrid and fully remote models have become permanent features of the post-pandemic landscape, debate has intensified about their effects on productivity, innovation, organisational culture, and employee wellbeing.|th|This essay argues that remote work, when implemented with appropriate managerial support and role-specific criteria, produces productivity outcomes comparable to or exceeding office-based work, making hybrid models the rational default for suitable roles.","ex2":"pt|Remote knowledge workers demonstrate comparable or superior individual productivity to office-based counterparts when managing their own schedules.|ev|A randomised controlled trial by Bloom et al. (2015) at a Chinese call centre found remote workers increased performance by 13% relative to the control group, attributing improvement to a quieter environment and fewer interruptions rather than longer hours.|ex|These findings suggest productivity in remote settings is primarily mediated by implementation quality — task-technology fit and managerial enablement — rather than physical co-location, challenging the assumption that office presence is a necessary condition for high performance.|lk|Remote work productivity is therefore better understood as a function of implementation quality than of inherent limitations of the model.","ex3":"cr|Critics argue that remote work impedes the informal knowledge transfer, spontaneous collaboration, and mentoring that occur through unscheduled in-person interaction — effects difficult to quantify short-term but potentially compounding, particularly for early-career employees.|rb|This concern identifies a genuine trade-off rather than a fatal flaw. However, it argues for thoughtful hybrid design — preserving in-person interaction for collaborative and mentoring tasks — rather than wholesale office return. The appropriate response is strategic co-location, not mandated full-time return.","task1":"Write an introduction for: <em>Corporate social responsibility reporting should be mandatory for all publicly listed companies.</em>","task2":"Write one PEEL paragraph for the mandatory CSR reporting thesis.","task3":"Write a counterargument and rebuttal for the mandatory CSR reporting thesis.","task4":"Write a conclusion for the mandatory CSR reporting essay.","model1":"<b>Hook</b> The COVID-19 pandemic forced the largest unplanned remote work experiment in history, with 42% of the US workforce at home full-time at peak lockdown. <b>Background</b> Hybrid and remote models have become permanent, generating debate about effects on productivity, innovation, culture, and wellbeing. <b>Thesis</b> This essay argues remote work, with appropriate managerial support and role-specific criteria, produces productivity outcomes comparable to or exceeding office-based work, making hybrid models the rational default for suitable roles.","model2":"<b>Point</b> Remote knowledge workers demonstrate comparable or superior productivity when managing their own schedules. <b>Evidence</b> Bloom et al. (2015) found a 13% performance increase among remote workers in an RCT, attributing improvement to quieter environments and fewer interruptions rather than longer hours. <b>Explanation</b> This suggests productivity is mediated by implementation quality — task-technology fit and managerial enablement — not physical co-location. <b>Link</b> Remote work productivity is better understood as a function of implementation quality than inherent model limitations.","model3":"<b>Concession</b> Critics argue remote work impedes informal knowledge transfer, collaboration, and mentoring — effects difficult to quantify but potentially compounding, particularly for early-career employees. <b>Pivot + rebuttal</b> This identifies a genuine trade-off rather than a fatal flaw. However, it argues for thoughtful hybrid design — preserving in-person interaction for collaborative and mentoring tasks — not wholesale office return. The appropriate response is strategic co-location.","model4":"<b>Restated thesis</b> The weight of evidence supports hybrid remote work models as the rational default for knowledge-intensive roles, delivering productivity and wellbeing benefits when implemented with structural support. <b>Summary</b> Randomised trial evidence and pandemic-era data support hybrid adoption over return-to-office mandates. <b>Implication</b> Organisations enforcing full-time office return without role-specific justification risk competitive disadvantage in talent markets where flexibility is now expected."},"marketing":{"label":"Marketing","topic":"data-driven personalisation and consumer privacy","phrases":["consumer decision-making literature indicates…","brand equity research demonstrates…","market segmentation theory suggests…","conversion rate data indicates…","customer lifetime value improved by…"],"ex1":"hook|Consumers now generate approximately 2.5 quintillion bytes of data daily, enabling marketing personalisation at unprecedented scale and raising fundamental questions about the boundaries between relevance and surveillance.|bg|As machine learning has made hyper-personalised advertising feasible, regulatory frameworks such as the EU GDPR have imposed significant constraints, creating tension between commercial logic and the imperatives of consumer privacy.|th|This essay argues that while data-driven personalisation demonstrably improves marketing efficiency when implemented transparently, its current application frequently crosses into manipulative practice, justifying stronger regulatory intervention.","ex2":"pt|Highly personalised advertising outperforms non-targeted approaches on engagement metrics — but these gains are substantially eroded when consumers become aware of surveillance-based data collection.|ev|Tucker (2014) found that Facebook ads described as behaviourally targeted generated significantly lower click-through rates than identical ads described as based on stated preferences, attributable to consumer aversion to surveillance.|ex|This suggests personalisation benefits are partially contingent on consumer ignorance — a dependency that incentivises opacity and undermines informed consent.|lk|Commercial sustainability of personalisation therefore depends on resolving the tension between effectiveness and transparency, not exploiting the gap between them.","ex3":"cr|Industry advocates argue that personalisation benefits consumers by reducing irrelevant advertising and surfacing relevant products — constituting a value exchange rather than a privacy violation.|rb|However, characterising this as a value exchange assumes meaningful consumer understanding and consent. Acquisti et al. (2015) demonstrate that most consumers substantially underestimate the extent and sensitivity of data collected, making meaningful informed consent largely absent from current practice.","task1":"Write an introduction for: <em>Influencer marketing should be subject to stricter disclosure requirements.</em>","task2":"Write one PEEL paragraph for the influencer marketing disclosure thesis.","task3":"Write a counterargument and rebuttal for the influencer marketing disclosure thesis.","task4":"Write a conclusion for the influencer marketing disclosure essay.","model1":"<b>Hook</b> Consumers generate 2.5 quintillion bytes of data daily, enabling personalisation at unprecedented scale and raising fundamental questions about the boundaries between relevance and surveillance. <b>Background</b> Machine learning has made hyper-personalisation feasible, but GDPR has created tension between commercial logic and privacy imperatives. <b>Thesis</b> This essay argues that while personalisation improves efficiency when implemented transparently, current application frequently crosses into manipulative practice, justifying stronger regulatory intervention.","model2":"<b>Point</b> Personalised advertising outperforms non-targeted approaches, but gains are eroded when consumers become aware of surveillance-based data collection. <b>Evidence</b> Tucker (2014) found Facebook ads described as behaviourally targeted generated significantly lower click-through rates than identical ads described as preference-based, attributable to consumer aversion to surveillance. <b>Explanation</b> This suggests personalisation benefits are contingent on consumer ignorance — a dependency that incentivises opacity and undermines informed consent. <b>Link</b> Commercial sustainability of personalisation depends on resolving the tension between effectiveness and transparency, not exploiting it.","model3":"<b>Concession</b> Industry advocates argue personalisation benefits consumers by reducing irrelevant ads — a value exchange rather than a privacy violation. <b>Pivot + rebuttal</b> However, a value exchange assumes meaningful understanding and consent. Acquisti et al. (2015) demonstrate most consumers substantially underestimate the extent of data collected, making meaningful consent largely absent from current practice.","model4":"<b>Restated thesis</b> Data-driven personalisation is not inherently problematic, but current implementation — dependent on consumer opacity and operating beyond meaningful consent — justifies stronger regulatory intervention. <b>Summary</b> Tucker's transparency evidence and Acquisti's privacy literacy data both support stricter disclosure requirements. <b>Implication</b> The marketing industry's long-term interest lies in building trust rather than exploiting information asymmetries — and transparency regulation would compel rather than obstruct this transition."},"accounting":{"label":"Accounting","topic":"fair value accounting and financial stability","phrases":["agency theory in accounting suggests…","earnings management literature indicates…","regulatory capital frameworks specify…","audit findings demonstrate…","deferred tax recognition requires…"],"ex1":"hook|The 2008 global financial crisis reignited debate about the role of fair value accounting in amplifying financial instability, with regulators deeply divided about whether market-based asset valuations illuminate or obscure the true financial health of institutions.|bg|International financial reporting standards have progressively expanded the use of fair value measurement since the 1990s, driven by the principle that current market prices provide more decision-relevant information than historical cost — but critics contend this approach introduces procyclical volatility.|th|This essay argues that fair value accounting, while conceptually superior for balance sheet transparency, requires significant refinement to mitigate its procyclical effects without abandoning its informational advantages.","ex2":"pt|Fair value accounting increases the information relevance of financial statements by aligning reported asset values with current economic conditions rather than acquisition cost.|ev|Barth et al. (2001) demonstrated that fair value estimates — including management-derived level 3 inputs — had incremental explanatory power over historical cost in predicting bank stock returns and failures.|ex|This predictive superiority suggests market-oriented valuations capture information about asset quality and credit risk that historical cost systematically obscures, providing early warning signals before book values deteriorate.|lk|These informational advantages represent a genuine transparency improvement that accounting standards should preserve despite implementation challenges.","ex3":"cr|Critics argue that fair value accounting introduced a dangerous procyclical dynamic during the 2008 crisis: falling prices forced mark-to-market write-downs, which reduced regulatory capital, triggering forced sales that further depressed prices in a self-reinforcing spiral.|rb|However, responsibility for this amplification lies not with fair value per se but with regulatory frameworks linking reported values directly to capital requirements without smoothing mechanisms. The solution is to decouple fair value from capital adequacy through countercyclical buffers — reforms now embedded in the Basel III framework.","task1":"Write an introduction for: <em>Mandatory integrated reporting should replace traditional annual financial reporting for listed companies.</em>","task2":"Write one PEEL paragraph for the integrated reporting thesis.","task3":"Write a counterargument and rebuttal for the integrated reporting thesis.","task4":"Write a conclusion for the integrated reporting essay.","model1":"<b>Hook</b> The 2008 financial crisis reignited debate about fair value accounting's role in amplifying instability, with regulators divided about whether market-based valuations illuminate or obscure institutional financial health. <b>Background</b> IFRS has progressively expanded fair value measurement since the 1990s, but critics point to procyclical volatility. <b>Thesis</b> This essay argues fair value accounting, while conceptually superior for transparency, requires refinement to mitigate procyclical effects without abandoning its informational advantages.","model2":"<b>Point</b> Fair value accounting increases information relevance by aligning reported values with current economic conditions rather than acquisition cost. <b>Evidence</b> Barth et al. (2001) demonstrated fair value estimates had incremental explanatory power over historical cost in predicting bank stock returns and failures. <b>Explanation</b> This predictive superiority suggests market valuations capture credit risk and asset quality information that historical cost systematically obscures. <b>Link</b> These informational advantages represent a genuine transparency improvement that standards should preserve despite implementation challenges.","model3":"<b>Concession</b> Critics argue fair value introduced dangerous procyclicality in 2008: falling prices forced write-downs, reduced capital ratios, triggered forced sales, further depressing prices. <b>Pivot + rebuttal</b> However, this resulted not from fair value per se but from regulatory frameworks mechanically linking reported values to capital requirements without smoothing. The solution is decoupling through countercyclical buffers — reforms now embedded in the Basel III framework.","model4":"<b>Restated thesis</b> Fair value accounting's informational advantages are real and worth preserving, provided procyclical risks are addressed through regulatory design rather than reversion to historical cost. <b>Summary</b> Barth et al.'s predictive superiority evidence and the availability of Basel III remedies support this nuanced position. <b>Implication</b> The challenge is not choosing between transparency and stability but designing reporting regimes that deliver both — requiring coordinated reform of accounting standards and prudential regulation."}}},"humanities":{"label":"Humanities & Social Sciences","icon":"📜","subs":{"linguistics":{"label":"Linguistics","topic":"multilingual language policy","phrases":["discourse analysis demonstrates…","corpus-based studies indicate…","sociolinguistic research suggests…","register analysis reveals…","code-switching patterns indicate…"],"ex1":"hook|More than half of the world's population speaks at least two languages, yet the language policies of many nation-states continue to privilege single official languages in ways that systematically marginalise multilingual communities.|bg|The relationship between language policy and social equity has attracted growing scholarly attention, with researchers examining how official language designations affect access to education, legal representation, and civic participation.|th|This paper argues that inclusive multilingual policies — recognising multiple official languages and providing mother-tongue instruction — produce measurable social and cognitive benefits that monolingual policies fail to deliver.","ex2":"pt|Mother-tongue education policies significantly improve literacy outcomes for children from linguistic minority backgrounds.|ev|A longitudinal study by Cummins (2014) across six countries found that students receiving initial literacy instruction in their first language consistently outperformed peers in submersion programmes on standardised assessments in both languages by end of primary schooling.|ex|These findings suggest that first-language foundations facilitate rather than impede additional language acquisition — challenging the widespread assumption that early immersion in the dominant language produces superior outcomes.|lk|Mother-tongue education is therefore an evidence-based approach to maximising literacy outcomes, not merely a concession to minority communities.","ex3":"cr|Proponents of monolingual education argue that a shared instructional language promotes national unity, ensuring all students acquire the linguistic skills necessary for civic and economic participation.|rb|However, this conflates linguistic homogeneity with social cohesion. Switzerland and Singapore, both multilingual polities with explicit language rights, rank among the most politically stable and economically productive societies globally, demonstrating that linguistic diversity is compatible with social solidarity.","task1":"Write an introduction for: <em>Social media is fundamentally reshaping the way language evolves.</em>","task2":"Write one PEEL paragraph for the social media and language evolution thesis.","task3":"Write a counterargument and rebuttal for the social media language thesis.","task4":"Write a conclusion for the social media language essay.","model1":"<b>Hook</b> More than half the world's population speaks at least two languages, yet many nation-states continue to privilege single official languages, systematically marginalising multilingual communities. <b>Background</b> Researchers increasingly examine how language designations affect access to education, legal representation, and civic participation. <b>Thesis</b> This paper argues that inclusive multilingual policies produce measurable social and cognitive benefits that monolingual policies fail to deliver.","model2":"<b>Point</b> Mother-tongue education significantly improves literacy outcomes for children from linguistic minority backgrounds. <b>Evidence</b> Cummins (2014) found that students receiving initial literacy instruction in their first language consistently outperformed peers in submersion programmes across six countries by end of primary schooling. <b>Explanation</b> First-language foundations facilitate rather than impede additional language acquisition — challenging the assumption that dominant-language immersion produces superior outcomes. <b>Link</b> Mother-tongue education is an evidence-based approach to maximising literacy outcomes, not merely a concession to minority communities.","model3":"<b>Concession</b> Proponents of monolingual education argue a shared instructional language promotes national unity and economic participation. <b>Pivot + rebuttal</b> However, this conflates linguistic homogeneity with social cohesion. Switzerland and Singapore — both multilingual with explicit language rights — rank among the most politically stable and productive societies globally, demonstrating diversity is compatible with solidarity.","model4":"<b>Restated thesis</b> The evidence makes a compelling case that multilingual language policies represent a more equitable and educationally effective approach than monolingual alternatives. <b>Summary</b> Literacy outcomes from mother-tongue instruction, the absence of evidence linking multilingualism to fragmentation, and the models from Switzerland and Singapore all support this conclusion. <b>Implication</b> At a time when language-based discrimination remains a driver of educational inequality, inclusive language policy is not merely ideological — it is an evidence-based imperative."},"history":{"label":"History","topic":"propaganda in the World Wars","phrases":["archival evidence suggests…","primary sources indicate…","historiographical debate centres on…","comparative analysis of wartime records shows…","revisionist scholarship has challenged…"],"ex1":"hook|The two World Wars represent the first conflicts in which modern mass media were systematically mobilised by governments to shape public opinion at a scale and sophistication that had no historical precedent.|bg|Historians have debated the extent to which wartime propaganda succeeded in generating genuine popular consent for military mobilisation, as opposed to merely reflecting pre-existing nationalist sentiment, with significant implications for how we understand the relationship between state communication and democratic accountability.|th|This essay argues that propaganda was not merely incidental to the prosecution of the World Wars but a constitutive element of them, shaping not only public morale but the strategic decisions governments believed were politically possible.","ex2":"pt|British propaganda during the First World War demonstrably transformed public attitudes toward military service and civilian sacrifice, moving populations from initial ambivalence to sustained support for a conflict of unprecedented human cost.|ev|Haste's (1977) analysis of British War Propaganda Bureau materials and recruitment data demonstrated a statistically significant correlation between targeted poster campaigns and voluntary enlistment surges in regional areas, with campaign themes shifting from patriotic duty to emotional appeals centred on family and shame as the war progressed.|ex|This evolution in messaging reveals a sophisticated, data-informed approach to public persuasion — one that contemporary political communication scholars recognise as a foundational precedent for modern audience-targeted campaigning.|lk|The propaganda machinery of World War One therefore represents not merely a historical curiosity but an institutional innovation whose structural logic persists in contemporary government communication.","ex3":"cr|Revisionist historians argue that the emphasis on propaganda's effectiveness overstates state agency and underestimates the role of genuine popular nationalism in sustaining war support, reducing complex social phenomena to a narrative of top-down manipulation that flatters government power at the expense of accuracy.|rb|However, acknowledging popular nationalism as a precondition does not require dismissing propaganda's causal role. Sanders and Taylor's (1982) institutional analysis of the British War Propaganda Bureau demonstrates that government communication actively shaped the content, intensity, and durability of nationalist sentiment rather than merely reflecting it.","task1":"Write an introduction for: <em>The use of social media by governments to shape public opinion during national crises raises serious democratic concerns.</em>","task2":"Write one PEEL paragraph for the government social media thesis.","task3":"Write a counterargument and rebuttal for the government social media thesis.","task4":"Write a conclusion for the government social media essay.","model1":"<b>Hook</b> The two World Wars represent the first conflicts in which modern mass media were systematically mobilised by governments to shape public opinion at unprecedented scale. <b>Background</b> Historians have debated whether wartime propaganda generated genuine popular consent or merely reflected pre-existing nationalist sentiment, with significant implications for understanding state communication and democratic accountability. <b>Thesis</b> This essay argues that propaganda was not merely incidental to the World Wars but a constitutive element of them, shaping not only public morale but the strategic decisions governments believed were politically possible.","model2":"<b>Point</b> British propaganda during the First World War demonstrably transformed public attitudes toward military service and civilian sacrifice. <b>Evidence</b> Haste's (1977) analysis of British War Propaganda Bureau materials demonstrated a statistically significant correlation between targeted poster campaigns and voluntary enlistment surges, with campaign themes evolving from patriotic duty to emotional appeals centred on family and shame. <b>Explanation</b> This evolution reveals a sophisticated, audience-responsive approach to public persuasion — recognised by contemporary political communication scholars as a foundational precedent for modern targeted campaigning. <b>Link</b> The propaganda machinery of World War One therefore represents an institutional innovation whose structural logic persists in contemporary government communication.","model3":"<b>Concession</b> Revisionist historians argue emphasising propaganda's effectiveness overstates state agency and underestimates the role of genuine popular nationalism, reducing complex phenomena to top-down manipulation that flatters government power. <b>Pivot + rebuttal</b> However, acknowledging popular nationalism as a precondition does not require dismissing propaganda's causal role. Sanders and Taylor's (1982) analysis demonstrates government communication actively shaped the content, intensity, and durability of nationalist sentiment rather than merely reflecting it.","model4":"<b>Restated thesis</b> Propaganda was not an epiphenomenon of the World Wars but a constitutive strategic resource without which the political sustainability of total war mobilisation would have been far less certain. <b>Summary</b> Haste's enlistment data and Sanders and Taylor's institutional analysis both establish the effectiveness and sophistication of wartime state communication in ways that revisionist accounts of popular nationalism cannot fully explain. <b>Implication</b> As governments deploy digital platforms to shape public opinion during crises, the World Wars' propaganda apparatus serves as an indispensable historical lens — not only for understanding what states are capable of, but for asking what democratic accountability requires of them."},"policy":{"label":"Public Policy","topic":"four-day working week","phrases":["pilot programme evidence suggests…","productivity metrics indicate…","employee wellbeing data demonstrates…","cost-benefit analysis of the intervention shows…","implementation evidence from X suggests…"],"ex1":"hook|Growing evidence of widespread burnout, declining productivity, and deteriorating work-life balance has renewed policy interest in reducing the standard working week from five days to four, with no reduction in pay.|bg|A wave of national and organisational pilot programmes — including landmark trials in Iceland, the United Kingdom, and Japan — has generated an emerging body of implementation evidence that allows for more rigorous assessment of the four-day week's effects on productivity, employee health, and organisational sustainability.|th|This essay argues that the evidence from recent four-day week trials is sufficiently compelling to justify its adoption as a default standard for office-based and knowledge-sector workers, with appropriate sectoral flexibility for industries where continuous operation is essential.","ex2":"pt|Four-day week trials have consistently demonstrated that reduced working hours do not produce commensurate reductions in productivity, and in many cases yield measurable improvements in employee wellbeing and output quality.|ev|The UK's 2022 four-day week pilot — evaluated by researchers at Cambridge and Boston College — found that 92% of participating companies retained the four-day week after the trial, with revenue remaining stable and sick days and staff turnover both declining significantly.|ex|These outcomes suggest that the productivity loss critics predict is largely offset by gains in focus, reduced absenteeism, and improved talent retention — effects that standard working-time models miss by conflating hours worked with value produced.|lk|The trial evidence therefore challenges the foundational assumption that a five-day week is economically necessary, rather than merely institutionally entrenched.","ex3":"cr|Sceptics argue that four-day week evidence is drawn disproportionately from white-collar, knowledge-sector organisations that self-selected into trials, making generalisation to manufacturing, healthcare, retail, and other shift-dependent sectors both premature and potentially inappropriate.|rb|However, this concern argues for sector-differentiated implementation rather than universal rejection of the policy. Compressed scheduling, rotating shift patterns, and staggered teams have enabled four-day week models to function in care and hospitality contexts, and proponents have consistently acknowledged that statutory implementation would need to include sectoral flexibility provisions.","task1":"Write an introduction for: <em>Remote work should become the default for all knowledge workers.</em>","task2":"Write one PEEL paragraph for the remote work default thesis.","task3":"Write a counterargument and rebuttal for the remote work default thesis.","task4":"Write a conclusion for the remote work default essay.","model1":"<b>Hook</b> Growing evidence of widespread burnout, declining productivity, and deteriorating work-life balance has renewed policy interest in reducing the standard working week from five days to four, with no reduction in pay. <b>Background</b> Landmark pilot programmes in Iceland, the United Kingdom, and Japan have generated implementation evidence allowing more rigorous assessment of the four-day week's effects. <b>Thesis</b> This essay argues that the evidence from recent four-day week trials is sufficiently compelling to justify its adoption as a default standard for knowledge-sector workers, with appropriate sectoral flexibility.","model2":"<b>Point</b> Four-day week trials have consistently demonstrated that reduced working hours do not produce commensurate productivity reductions, and in many cases yield measurable improvements in wellbeing and output quality. <b>Evidence</b> The UK's 2022 pilot — evaluated by Cambridge and Boston College researchers — found 92% of companies retained the four-day week after the trial, with revenue stable and sick days and staff turnover both declining. <b>Explanation</b> These outcomes suggest productivity losses critics predict are largely offset by gains in focus, reduced absenteeism, and improved talent retention — effects standard working-time models miss by conflating hours with value produced. <b>Link</b> The trial evidence challenges the foundational assumption that a five-day week is economically necessary, rather than merely institutionally entrenched.","model3":"<b>Concession</b> Sceptics argue four-day week evidence is drawn disproportionately from white-collar organisations that self-selected into trials, making generalisation to manufacturing, healthcare, and retail premature and potentially inappropriate. <b>Pivot + rebuttal</b> However, this argues for sector-differentiated implementation rather than universal rejection. Compressed scheduling, rotating shifts, and staggered teams have enabled four-day models in care and hospitality contexts, and proponents consistently acknowledge that statutory implementation requires sectoral flexibility provisions.","model4":"<b>Restated thesis</b> The four-day working week is no longer a utopian aspiration but an evidence-tested policy option whose productivity and wellbeing benefits are sufficiently established to warrant serious legislative consideration. <b>Summary</b> The UK pilot's 92% retention rate, stable revenue findings, and documented wellbeing improvements represent a stronger evidence base than critics acknowledge. <b>Implication</b> As automation continues to reshape the volume and nature of human labour, the question of how working time is structured will become increasingly central to economic policy — and governments that wait for perfect evidence before acting risk ceding the agenda to inertia rather than evidence."}}},"science":{"label":"Science & Engineering","icon":"🔬","subs":{"medicine":{"label":"Medicine","topic":"nurse-to-patient ratios and patient safety","phrases":["clinical outcomes research demonstrates…","randomised trial evidence indicates…","adverse event rates were significantly lower when…","nursing workload data suggests…","evidence-based staffing frameworks require…"],"ex1":"hook|Nursing workforce shortages have reached critical levels across high-income countries, with research consistently linking inadequate nurse staffing to preventable patient deaths, increased hospital-acquired infection rates, and higher rates of nurse burnout and turnover.|bg|In response, some jurisdictions — including California and Victoria, Australia — have enacted mandatory minimum nurse-to-patient ratio legislation, while others continue to rely on flexible staffing models that adjust with patient acuity and available resources.|th|This essay argues that the weight of clinical evidence supports the introduction of legislated minimum nurse-to-patient ratios as a patient safety intervention, and that the workforce and cost arguments against mandated ratios do not withstand scrutiny when outcomes data are properly accounted for.","ex2":"pt|Lower nurse-to-patient ratios are independently associated with higher rates of preventable patient mortality and adverse clinical events.|ev|A landmark study by Aiken et al. (2014) examining data from 422 hospitals across nine European countries found that each additional patient per nurse was associated with a 7% increase in the odds of patient mortality within 30 days of admission, after controlling for hospital and patient characteristics.|ex|This dose-response relationship suggests that nurse workload is a causal factor in patient outcomes rather than merely a correlate of hospital quality, making the case for establishing a maximum patient load above which the risk of preventable harm becomes unacceptable.|lk|Mandated ratios therefore represent a structurally necessary rather than merely aspirational response to the evidence on staffing-related patient harm.","ex3":"cr|Critics argue that fixed mandatory ratios are inflexible instruments that fail to account for variations in patient acuity, clinical setting, and skill mix, potentially mandating over-staffing in low-acuity settings while creating compliance costs that divert resources from other patient care priorities.|rb|However, evidence from Victoria — where mandatory ratios have been in place since 2000 — suggests these concerns have not materialised at scale. Twigg et al. (2019) found no significant increase in overall nursing labour costs relative to comparable non-mandate jurisdictions, and documented sustained improvements in patient safety outcomes over fifteen years of implementation.","task1":"Write an introduction for: <em>Mental health nursing should be allocated greater resource investment within public healthcare systems.</em>","task2":"Write one PEEL paragraph for the mental health nursing investment thesis.","task3":"Write a counterargument and rebuttal for the mental health nursing investment thesis.","task4":"Write a conclusion for the mental health nursing investment essay.","model1":"<b>Hook</b> Nursing workforce shortages have reached critical levels, with research consistently linking inadequate staffing to preventable patient deaths, higher infection rates, and accelerating nurse burnout. <b>Background</b> Some jurisdictions — including California and Victoria — have enacted mandatory minimum ratio legislation, while others rely on flexible staffing models. <b>Thesis</b> This essay argues that clinical evidence supports legislated minimum nurse-to-patient ratios as a patient safety intervention, and that workforce and cost arguments against mandated ratios do not withstand scrutiny when outcomes data are properly accounted for.","model2":"<b>Point</b> Lower nurse-to-patient ratios are independently associated with higher rates of preventable patient mortality. <b>Evidence</b> Aiken et al. (2014) found across 422 hospitals in nine European countries that each additional patient per nurse was associated with a 7% increase in odds of mortality within 30 days of admission, after controlling for hospital and patient characteristics. <b>Explanation</b> This dose-response relationship suggests nurse workload is a causal factor in patient outcomes — not merely a correlate of hospital quality — making the case for a maximum patient load above which risk of preventable harm becomes unacceptable. <b>Link</b> Mandated ratios therefore represent a structurally necessary rather than merely aspirational response to the evidence on staffing-related harm.","model3":"<b>Concession</b> Critics argue fixed mandatory ratios are inflexible, failing to account for patient acuity variation and potentially mandating over-staffing in low-acuity settings while creating compliance costs. <b>Pivot + rebuttal</b> However, evidence from Victoria — where mandatory ratios have been in place since 2000 — suggests these concerns have not materialised at scale. Twigg et al. (2019) found no significant increase in overall nursing labour costs relative to comparable non-mandate jurisdictions, and documented sustained patient safety improvements over fifteen years.","model4":"<b>Restated thesis</b> The clinical and implementation evidence strongly supports mandated nurse-to-patient ratios as a patient safety intervention whose benefits outweigh the practical concerns raised by critics. <b>Summary</b> Aiken et al.'s dose-response mortality data and Victoria's fifteen-year implementation record constitute a compelling evidence base that workforce flexibility arguments cannot adequately counter. <b>Implication</b> Health systems that continue to rely on flexible staffing models in the face of this evidence face a fundamental question about whether they are genuinely committed to patient safety or merely to its appearance."},"environmental":{"label":"Environmental Science","topic":"urban green spaces and public health","phrases":["epidemiological evidence indicates…","longitudinal cohort studies suggest…","greenspace access was associated with…","public health impact assessments show…","spatial analysis of urban environments demonstrates…"],"ex1":"hook|Rapid urbanisation has dramatically reduced access to natural environments for a majority of the world's population, with research increasingly linking this loss to measurable declines in physical and mental health outcomes across urban communities.|bg|Urban green spaces — including parks, street trees, community gardens, and riverside corridors — have attracted growing attention from public health researchers and urban planners as a potentially cost-effective intervention for reducing chronic disease burden and addressing health inequalities.|th|This essay argues that the evidence base linking urban green space access to improved health outcomes is now sufficiently robust to justify mandatory green space provision standards in urban planning legislation, particularly in high-density residential areas.","ex2":"pt|Access to urban green spaces is independently associated with reduced rates of depression, anxiety, and all-cause mortality in adult populations.|ev|A systematic review and meta-analysis by Twohig-Bennett and Jones (2018) synthesising data from over 140 studies found that populations with greater green space access had significantly lower rates of type 2 diabetes, cardiovascular disease, and premature mortality, with effect sizes remaining significant after controlling for socioeconomic status and physical activity levels.|ex|The persistence of effects after controlling for physical activity suggests green space operates through multiple pathways — including stress reduction, air quality improvement, and social cohesion — rather than solely through exercise promotion, making it a uniquely versatile public health infrastructure investment.|lk|Mandatory urban green space provision therefore represents an evidence-based planning intervention with health returns that extend well beyond the populations who actively use the spaces.","ex3":"cr|Critics of mandatory green space standards argue that prescriptive area requirements are a blunt instrument that fails to account for the diversity of urban contexts, potentially diverting scarce urban land from affordable housing in cities facing acute housing crises.|rb|However, this framing presents a false dilemma. Evidence from cities including Singapore and Vienna demonstrates that mandatory green infrastructure standards can be integrated into high-density housing developments through rooftop gardens, green corridors, and pocket parks, with health returns that reduce downstream healthcare costs substantially enough to offset land value trade-offs.","task1":"Write an introduction for: <em>City governments should prioritise pedestrian infrastructure over private vehicle access in urban centres.</em>","task2":"Write one PEEL paragraph for the pedestrian infrastructure thesis.","task3":"Write a counterargument and rebuttal for the pedestrian infrastructure thesis.","task4":"Write a conclusion for the pedestrian infrastructure essay.","model1":"<b>Hook</b> Rapid urbanisation has dramatically reduced access to natural environments for a majority of the world's population, with research increasingly linking this loss to measurable declines in physical and mental health outcomes. <b>Background</b> Urban green spaces have attracted growing attention from public health researchers and urban planners as a cost-effective intervention for reducing chronic disease burden and addressing health inequalities. <b>Thesis</b> This essay argues that the evidence linking urban green space access to improved health outcomes is now sufficiently robust to justify mandatory green space provision standards in urban planning legislation.","model2":"<b>Point</b> Access to urban green spaces is independently associated with reduced rates of depression, anxiety, and all-cause mortality in adult populations. <b>Evidence</b> A systematic review by Twohig-Bennett and Jones (2018) synthesising over 140 studies found that populations with greater green space access had significantly lower rates of type 2 diabetes, cardiovascular disease, and premature mortality, with effects persisting after controlling for socioeconomic status and physical activity. <b>Explanation</b> The persistence of effects after controlling for physical activity suggests green space operates through multiple pathways — stress reduction, air quality improvement, and social cohesion — making it a uniquely versatile public health infrastructure investment. <b>Link</b> Mandatory green space provision therefore represents an evidence-based planning intervention with health returns extending well beyond active users.","model3":"<b>Concession</b> Critics argue that prescriptive green space requirements are a blunt instrument that fails to account for diverse urban contexts, potentially diverting scarce land from affordable housing in cities facing acute housing crises. <b>Pivot + rebuttal</b> However, this presents a false dilemma. Evidence from Singapore and Vienna demonstrates that mandatory green infrastructure standards can be integrated into high-density developments through rooftop gardens, green corridors, and pocket parks, with health returns that reduce downstream healthcare costs substantially enough to offset land value trade-offs.","model4":"<b>Restated thesis</b> The public health case for mandatory urban green space provision has reached an evidentiary threshold that urban planning legislation should reflect — not as an amenity concession but as a structural health infrastructure requirement. <b>Summary</b> Twohig-Bennett and Jones's meta-analytic evidence, the multi-pathway mechanisms underpinning green space health effects, and the demonstrated integration of green infrastructure into high-density development all support this conclusion. <b>Implication</b> As urban populations continue to grow and chronic disease burdens intensify, the cost of failing to mandate green space provision will increasingly be borne not by developers but by health systems."},"engineering":{"label":"Engineering","topic":"nuclear energy as a low-carbon transition technology","phrases":["lifecycle emissions analysis indicates…","capacity factor data demonstrates…","engineering safety assessments show…","comparative risk analysis suggests…","levelised cost of energy modelling indicates…"],"ex1":"hook|The accelerating urgency of decarbonising electricity systems has forced a reassessment of nuclear power — a technology long associated with high-profile accidents and waste disposal controversies — as a potentially indispensable component of net-zero energy pathways.|bg|While renewable energy sources have achieved dramatic cost reductions, their intermittency poses grid stability challenges that battery storage and interconnection alone may be insufficient to resolve at the scale and speed that climate targets demand.|th|This essay argues that advanced nuclear energy represents a necessary complement to renewable energy in achieving deep decarbonisation of electricity systems, and that opposition based primarily on historical accident risk underestimates the substantial safety advances achieved since the designs associated with Chernobyl and Fukushima.","ex2":"pt|Nuclear power produces among the lowest lifecycle greenhouse gas emissions of any electricity generation technology, comparable to wind and significantly lower than solar and natural gas.|ev|A lifecycle analysis by the Intergovernmental Panel on Climate Change (2014) found nuclear energy's median lifecycle emissions at approximately 12 gCO2eq/kWh — comparable to onshore wind at 11 gCO2eq/kWh and substantially lower than solar photovoltaic at 48 gCO2eq/kWh and natural gas at 490 gCO2eq/kWh.|ex|These figures situate nuclear power firmly within the category of low-carbon technologies on an emissions basis, undermining arguments that frame the choice as one between nuclear and renewables rather than recognising both as components of a decarbonised electricity mix.|lk|The emissions evidence therefore provides strong technical justification for retaining and expanding nuclear capacity within national net-zero strategies rather than prematurely closing existing plants.","ex3":"cr|Critics argue that the catastrophic accident risk associated with nuclear power — exemplified by Chernobyl in 1986 and Fukushima Daiichi in 2011 — represents an unacceptable tail risk that no level of improved safety engineering can fully eliminate, making nuclear an inappropriate cornerstone of long-term energy infrastructure.|rb|However, comparative mortality data consistently challenges this intuition. Sovacool et al. (2016) found that nuclear power has caused fewer deaths per unit of energy produced than any other major energy source including natural gas, solar, and wind when accounting for full lifecycle risks, suggesting the perceived risk of nuclear power is disproportionate to its statistical safety record relative to the alternatives it would displace.","task1":"Write an introduction for: <em>Governments should ban new fossil fuel extraction projects as part of national climate commitments.</em>","task2":"Write one PEEL paragraph for the fossil fuel extraction ban thesis.","task3":"Write a counterargument and rebuttal for the fossil fuel extraction ban thesis.","task4":"Write a conclusion for the fossil fuel extraction ban essay.","model1":"<b>Hook</b> The accelerating urgency of decarbonising electricity systems has forced a reassessment of nuclear power as a potentially indispensable component of net-zero energy pathways. <b>Background</b> While renewables have achieved dramatic cost reductions, their intermittency poses grid stability challenges that storage and interconnection alone may be insufficient to resolve at the scale climate targets demand. <b>Thesis</b> This essay argues that advanced nuclear energy represents a necessary complement to renewables in achieving deep decarbonisation, and that opposition based primarily on historical accident risk underestimates substantial safety advances since Chernobyl and Fukushima.","model2":"<b>Point</b> Nuclear power produces among the lowest lifecycle greenhouse gas emissions of any electricity generation technology, comparable to wind and substantially lower than solar and natural gas. <b>Evidence</b> An IPCC lifecycle analysis (2014) found nuclear energy's median lifecycle emissions at approximately 12 gCO2eq/kWh — comparable to onshore wind at 11 gCO2eq/kWh and substantially lower than solar at 48 and natural gas at 490 gCO2eq/kWh. <b>Explanation</b> These figures situate nuclear firmly within the category of low-carbon technologies, undermining arguments that frame the choice as nuclear versus renewables rather than recognising both as components of a decarbonised mix. <b>Link</b> The emissions evidence provides strong technical justification for retaining and expanding nuclear capacity within national net-zero strategies rather than prematurely closing existing plants.","model3":"<b>Concession</b> Critics argue that catastrophic accident risk — exemplified by Chernobyl and Fukushima — represents an unacceptable tail risk that no safety engineering can fully eliminate, making nuclear an inappropriate cornerstone of long-term energy infrastructure. <b>Pivot + rebuttal</b> However, comparative mortality data consistently challenges this intuition. Sovacool et al. (2016) found nuclear power has caused fewer deaths per unit of energy produced than any other major energy source — including natural gas, solar, and wind — when accounting for full lifecycle risks, suggesting perceived nuclear risk is disproportionate to its statistical safety record.","model4":"<b>Restated thesis</b> The technical case for nuclear energy as a necessary complement to renewables in deep decarbonisation is well-supported by lifecycle emissions data and comparative risk analysis, and deserves a more prominent place in national net-zero strategies than prevailing public opinion has allowed. <b>Summary</b> IPCC lifecycle emissions figures and Sovacool et al.'s comparative mortality evidence both underpin this conclusion. <b>Implication</b> As the window for meeting 1.5 degrees Celsius targets narrows, energy policy that excludes nuclear on the basis of misaligned risk perception rather than evidence risks foreclosing one of the few low-carbon technologies capable of providing firm, dispatchable power at the scale decarbonisation demands."}}}};
+
+var RC={'hook':'hy','bg':'hb','th':'hg','pt':'hb','ev':'hy','ex':'hg','lk':'hx','cr':'hr','rb':'hy'};
+function buildEx(raw){
+  var parts=raw.split('|'),html='',i=0;
+  while(i<parts.length-1){var role=parts[i],text=parts[i+1],cls=RC[role]||'hb';html+='<span class="hl '+cls+'">'+text+'</span> ';i+=2;}
+  return html.trim();
+}
+function buildModel(raw){return '<p>'+raw.replace(/<b>(.*?)<\/b>/g,'<span class="ann">→ $1</span>')+'</p>';}
+
+var CUR_D=null,CUR_S=null;
+function buildSel(n){
+  var c=document.getElementById('ds'+n);if(!c)return;
+  var wrap=document.createElement('div');wrap.className='dsel';
+  var lbl=document.createElement('div');lbl.className='dlbl';lbl.textContent='🎓 Choose your discipline — examples, tasks and model answers will update';
+  wrap.appendChild(lbl);
+  var drow=document.createElement('div');drow.className='drow';
+  Object.keys(DISC).forEach(function(dk){
+    var btn=document.createElement('button');btn.className='dbtn'+(CUR_D===dk?' on':'');
+    btn.textContent=DISC[dk].icon+' '+DISC[dk].label;btn.dataset.dk=dk;
+    btn.addEventListener('click',function(){pickD(this.dataset.dk);});drow.appendChild(btn);
+  });
+  wrap.appendChild(drow);
+  if(CUR_D){
+    var srow=document.createElement('div');srow.className='srow';
+    Object.keys(DISC[CUR_D].subs).forEach(function(sk){
+      var btn=document.createElement('button');btn.className='sbtn2'+(CUR_S===sk?' on':'');
+      btn.textContent=DISC[CUR_D].subs[sk].label;btn.dataset.sk=sk;
+      btn.addEventListener('click',function(){pickS(this.dataset.sk);});srow.appendChild(btn);
+    });
+    wrap.appendChild(srow);
+  }
+  c.innerHTML='';c.appendChild(wrap);
+}
+function pickD(dk){CUR_D=dk;CUR_S=Object.keys(DISC[dk].subs)[0];refreshAll();}
+function pickS(sk){CUR_S=sk;refreshAll();}
+function refreshAll(){
+  [1,2,3,4].forEach(function(n){buildSel(n);});
+  if(!CUR_D||!CUR_S)return;
+  var s=DISC[CUR_D].subs[CUR_S];
+  var dn=DISC[CUR_D].label+' — '+s.label;
+  [1,2,3,4].forEach(function(n){var b=document.getElementById('db'+n);if(b){b.textContent='✦ Showing: '+dn+' (topic: '+s.topic+')';b.className='dbar show';}});
+  var e1=document.getElementById('ex1');if(e1)e1.innerHTML=buildEx(s.ex1);
+  var e2=document.getElementById('ex2');if(e2)e2.innerHTML=buildEx(s.ex2);
+  var e3=document.getElementById('ex3');if(e3)e3.innerHTML=buildEx(s.ex3);
+  [1,2,3,4].forEach(function(n){var t=document.getElementById('task'+n);if(t)t.innerHTML='<strong>Your task:</strong> '+s['task'+n];});
+  var ph=document.getElementById('pb1hooks');if(ph)ph.innerHTML=s.phrases.map(function(p){return'<span class="chip">'+p+'</span>';}).join('');
+  [1,2,3,4].forEach(function(n){var mc=document.getElementById('ma'+n+'c');if(mc)mc.innerHTML=buildModel(s['model'+n]);});
+  buildHL();
+}
+
+function chkQ1(el,correct){
+  document.querySelectorAll('#q1 .qs').forEach(function(s){s.classList.remove('correct','wrong');s.onclick=null;});
+  el.classList.add(correct?'correct':'wrong');
+  var fb=document.getElementById('q1fb');fb.style.display='block';
+  if(correct){fb.innerHTML='<div class="callout ct"><strong>Correct!</strong> This sentence takes a clear, debatable position.</div>';}
+  else{fb.innerHTML='<div class="callout" style="border-color:var(--red);background:var(--redl);color:#5a1a1a"><strong>Not quite.</strong> That sentence states a fact or background. The thesis takes an arguable stance.</div>';document.querySelectorAll('#q1 .qs')[2].classList.add('correct');}
+}
+
+var hlMode=null,hlMarked={hook:null,background:null,thesis:null};
+var hlSegs=[
+  {role:'hook',text:'Every year, AI systems make decisions affecting millions of lives — from loan approvals to medical diagnoses.'},
+  {role:'background',text:' Yet despite this reach, there exists no globally binding framework to ensure these systems operate safely or ethically across borders.'},
+  {role:'thesis',text:' This paper contends that an international treaty on AI governance is both feasible and urgently necessary to prevent catastrophic systemic harm.'}
+];
+var hlC={hook:{bg:'#fff3a3',border:'#e6c900',text:'#5a4800',label:'🟡 Hook'},background:{bg:'#b3d9ff',border:'#3399ff',text:'#003366',label:'🔵 Background'},thesis:{bg:'#b3f5c8',border:'#33cc66',text:'#005522',label:'🟢 Thesis'}};
+function buildHL(){
+  var box=document.getElementById('hltext');if(!box)return;
+  box.innerHTML=hlSegs.map(function(s){return'<span class="hlseg" data-role="'+s.role+'">'+s.text+'</span>';}).join('');
+  hlMarked={hook:null,background:null,thesis:null};hlMode=null;updHLS();
+}
+function setHLM(e,mode){
+  hlMode=mode;
+  document.querySelectorAll('.hmbtn').forEach(function(b){b.style.background='white';b.style.color='var(--muted)';b.style.borderColor='var(--border)';});
+  var c=hlC[mode];e.target.style.background=c.bg;e.target.style.color=c.text;e.target.style.borderColor=c.border;
+}
+function capHL(){
+  if(!hlMode)return;var sel=window.getSelection();if(!sel||sel.isCollapsed)return;
+  var node=sel.anchorNode;while(node&&node.nodeType!==1)node=node.parentNode;if(!node)return;
+  var seg=node.closest?node.closest('.hlseg'):null;if(!seg)return;
+  hlMarked[hlMode]=seg.getAttribute('data-role');updHLS();sel.removeAllRanges();
+}
+function updHLS(){
+  ['hook','background','thesis'].forEach(function(r){var el=document.getElementById('hls-'+r);if(!el)return;var c=hlC[r];if(hlMarked[r]){el.textContent=c.label+': marked ✓';el.style.color=c.text;}else{el.textContent=c.label+': not marked';el.style.color='var(--faint)';}});
+}
+function checkHL(){
+  var res=document.getElementById('hlresult');
+  if(!hlMarked.hook&&!hlMarked.background&&!hlMarked.thesis){res.innerHTML='<div class="callout" style="border-color:var(--gold);background:var(--goldl);color:#5c3d0a"><strong>Not yet complete.</strong> Please mark all three parts before checking.</div>';return;}
+  var correct=0,fb=[];
+  ['hook','background','thesis'].forEach(function(role){var c=hlC[role];var ok=hlMarked[role]===role;if(ok){correct++;fb.push('<div class="ei"><div class="eib" style="background:'+c.bg+';color:'+c.text+'">✓</div><span><strong>'+c.label+':</strong> Correct!</span></div>');}else{fb.push('<div class="ei"><div class="eib">✗</div><span><strong>'+c.label+':</strong> Not quite — try selecting the correct sentence.</span></div>');}});
+  res.innerHTML='<div style="background:white;border:1px solid var(--border);border-radius:var(--r);overflow:hidden"><div style="padding:10px 14px;background:'+(correct===3?'var(--gl)':'var(--parch2)')+';font-weight:600;font-size:13.5px;color:'+(correct===3?'var(--green)':'var(--ink)')+'">'+( correct===3?'✓ All three parts correctly identified.':correct+'/3 correct')+'</div><div style="padding:12px 14px">'+fb.join('')+'</div></div>';
+  if(correct===3){hlSegs.forEach(function(s){var seg=document.querySelector('#hltext .hlseg[data-role="'+s.role+'"]');var c=hlC[s.role];if(seg){seg.style.background=c.bg;seg.style.outline='2px solid '+c.border;seg.style.fontWeight='600';}});}
+}
+function resetHL(){hlMode=null;hlMarked={hook:null,background:null,thesis:null};document.querySelectorAll('.hmbtn').forEach(function(b){b.style.background='white';b.style.color='var(--muted)';b.style.borderColor='var(--border)';});buildHL();var r=document.getElementById('hlresult');if(r)r.innerHTML='';}
+
+var peelData=[
+  {text:'Mandatory remote work policies would significantly reduce urban carbon emissions.',correct:'P — Point'},
+  {text:'A 2022 Stanford study found that remote workers commute 70% less, reducing individual carbon footprints by an average of 2.1 tonnes per year.',correct:'E — Evidence'},
+  {text:'Given that transport accounts for roughly a quarter of global CO2 emissions, normalising remote work could represent a meaningful structural intervention at scale.',correct:'E — Explanation'},
+  {text:'Thus, remote work offers not merely a productivity solution but also a viable climate mitigation strategy aligned with net-zero targets.',correct:'L — Link'}
+];
+var peelLabels=['P — Point','E — Evidence','E — Explanation','L — Link'];
+var peelBuilt=false;
+function buildPEEL(){
+  if(peelBuilt)return;peelBuilt=true;
+  var c=document.getElementById('peel-quiz');if(!c)return;
+  peelData.forEach(function(item,i){
+    var w=document.createElement('div');w.style.marginBottom='12px';
+    var txt=document.createElement('div');txt.style.cssText='font-family:"Lora",serif;font-size:13.5px;line-height:1.7;background:var(--parch2);padding:9px 13px;border-radius:6px;margin-bottom:6px';txt.textContent=item.text;
+    var opts=document.createElement('div');opts.style.cssText='display:flex;gap:6px;flex-wrap:wrap';opts.id='po-'+i;
+    peelLabels.forEach(function(l){var btn=document.createElement('button');btn.className='db';btn.textContent=l;btn.dataset.lbl=l;btn.addEventListener('click',function(){selPEEL(i,this,l);});opts.appendChild(btn);});
+    w.appendChild(txt);w.appendChild(opts);c.appendChild(w);
+  });
+}
+function selPEEL(i,el,val){document.querySelectorAll('#po-'+i+' .db').forEach(function(b){b.classList.remove('sel','correct','wrong');});el.dataset.sel=val;el.classList.add('sel');}
+function chkPEEL(){
+  var s=0;
+  peelData.forEach(function(item,i){document.querySelectorAll('#po-'+i+' .db').forEach(function(b){if(b.classList.contains('sel')){var ok=b.dataset.sel===item.correct;b.classList.remove('sel');b.classList.add(ok?'correct':'wrong');if(ok)s++;}});});
+  document.getElementById('peel-result').innerHTML='<div class="callout '+(s===4?'ct':'ci')+'"><strong>'+s+'/4 correct.</strong> '+(s===4?'Excellent! All PEEL components correctly identified.':'Review the Learn tab to see how each component functions, then try again.')+'</div>';
+}
+
+var crData=[
+  {text:'Some economists contend that the productivity gains attributed to remote work are largely confined to individual contributors and do not translate to team-based innovation.',isC:true},
+  {text:'Nevertheless, longitudinal studies tracking dispersed R&D teams suggest that asynchronous collaboration tools, when properly implemented, can match or exceed in-person ideation in measurable output metrics.',isC:false},
+  {text:'There is also concern that employees without dedicated home office space suffer from disproportionate ergonomic and wellbeing costs.',isC:true},
+  {text:'However, the solution lies not in returning to mandatory office presence but in ensuring employers provide adequate home-working stipends — a cost still substantially below commercial real estate overhead.',isC:false}
+];
+var crBuilt=false;
+function buildCR(){
+  if(crBuilt)return;crBuilt=true;
+  var c=document.getElementById('cr-quiz');if(!c)return;
+  crData.forEach(function(item,i){
+    var w=document.createElement('div');w.style.marginBottom='10px';
+    var txt=document.createElement('div');txt.style.cssText='font-family:"Lora",serif;font-size:13.5px;line-height:1.7;background:var(--parch2);padding:9px 13px;border-radius:6px;margin-bottom:6px';txt.textContent=item.text;
+    var opts=document.createElement('div');opts.style.cssText='display:flex;gap:8px';opts.id='cro-'+i;
+    ['C — Counterargument','R — Rebuttal'].forEach(function(lbl){var btn=document.createElement('button');btn.className='db';btn.textContent=lbl;btn.dataset.v=lbl[0];btn.addEventListener('click',function(){selCR(i,this);});opts.appendChild(btn);});
+    w.appendChild(txt);w.appendChild(opts);c.appendChild(w);
+  });
+}
+function selCR(i,el){document.querySelectorAll('#cro-'+i+' .db').forEach(function(b){b.classList.remove('sel');});el.classList.add('sel');}
+function chkCR(){
+  var s=0;
+  crData.forEach(function(item,i){document.querySelectorAll('#cro-'+i+' .db').forEach(function(b){if(b.classList.contains('sel')){var ok=(b.dataset.v==='C')===item.isC;b.classList.remove('sel');b.classList.add(ok?'correct':'wrong');if(ok)s++;}});});
+  document.getElementById('cr-result').innerHTML='<div class="callout '+(s===4?'ct':'ci')+'"><strong>'+s+'/4 correct.</strong> '+(s===4?'Perfect! Notice how rebuttals pivot with "Nevertheless" or "However".':'Look for the pivot words that signal the shift from concession to rebuttal.')+'</div>';
+}
+
+var concOpts=[{text:'Rephrased thesis',missing:true},{text:'Summary of main arguments',missing:true},{text:'Broader implication or significance',missing:true},{text:'New evidence (this should NOT be in a conclusion)',missing:false},{text:'Academic register and formal language',missing:true}];
+var concBuilt=false;
+function buildConc(){
+  if(concBuilt)return;concBuilt=true;
+  var c=document.getElementById('copts');if(!c)return;
+  concOpts.forEach(function(opt,i){var btn=document.createElement('button');btn.className='db';btn.textContent=opt.text;btn.dataset.idx=i;btn.addEventListener('click',function(){this.classList.toggle('sel');});c.appendChild(btn);});
+}
+function chkConc(){
+  var sel=Array.from(document.querySelectorAll('#copts .db.sel')).map(function(b){return parseInt(b.dataset.idx);});
+  var missing=[0,1,2,4];var right=sel.filter(function(i){return missing.indexOf(i)>-1;});var wrong=sel.filter(function(i){return missing.indexOf(i)===-1;});
+  var html='';
+  if(wrong.length)html+='<div class="callout" style="border-color:var(--gold);background:var(--goldl);color:#5c3d0a"><strong>Note:</strong> New evidence is an error to avoid — it should not appear in conclusions.</div>';
+  if(right.length===4&&!wrong.length)html+='<div class="callout ct"><strong>Excellent!</strong> Correct — that weak conclusion is missing: a rephrased thesis, argument summary, broader implication, and strong academic register.</div>';
+  else html+='<div class="callout ci"><strong>'+right.length+'/4 missing elements identified.</strong> The conclusion is missing: a rephrased thesis, a summary of key arguments, a broader implication, and strong academic register.</div>';
+  document.getElementById('cresult').innerHTML=html;
+}
+
+document.addEventListener('DOMContentLoaded',function(){
+  [1,2,3,4].forEach(function(n){buildSel(n);});
+  buildHL();
+});
+
+</script>
+</body>
+</html>
